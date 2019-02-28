@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>选择地址</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/dizhiguanli.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="container_Div">
+				<div class="xunze_dizhi">
+					<div class="dingwei_dizhi">
+						<a href="javascript:void(0)" class="location_now"><img src="__STATIC__/wechat/img/dingwei_dizhi.png" />点击定位当前位置</a>
+					</div>
+					<div class="shouhuo_dizhi">
+
+						<a href="#"><img src="__STATIC__/wechat/img/dizhi_shouhuo_img.png" /> &nbsp;我的收货地址</a>
+					</div>
+					<ul class="shouhuo_dizhiUl">
+					</ul>
+				</div>
+
+				<!--增加按钮-->
+				<div class="diszhi_btn">
+					<a href="javascript:void(0)" class="diszhi_btn_a">新增地址</a>
+				</div>
+				<!--增加按钮 end-->
+			</div>
+		</div>
+		<footer>
+			<nav>
+				<ul>
+					<li>
+						<a href="javascript:void(0)" class="logoSpanH">
+							<span class="foot_logoSpan"><img src="__STATIC__/wechat/img/foot_logoF.png"/></span>
+							<span class="foot_logoSpanH">首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="logoGh">
+							<span><img src="__STATIC__/wechat/img/foot_logoGh.png"/></span>
+							<span class="foot_logoSpan">购物車</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="logoRh">
+							<span><img src="__STATIC__/wechat/img/foot_logoRh.png" /></span>
+							<span class="foot_logoSpan">我的</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('.dizhi_guanli .dizhi_guanli_formA1').each(function() {
+			$(this).click(function() {
+				$(this).parent().parent().parent().remove('.dizhi_guanli');
+			})
+		})
+		$(document).ready(function () {
+			$.post("/api/wechat/get_user_info",function(data){
+	            var data = JSON.parse(data);
+	            if(data.code == '200'){
+	            	//获取我的地址接口
+					$.post('/api/wechat/my_address',{},function(res){
+						var content ='';
+						var res = JSON.parse(res);
+						if(res.code == 200){
+							if(res.data.length > 0){
+								$.each(res.data,function(name,value){
+									if(value.city_province){
+										var province = value.city_province+'省 ';
+									}
+									content +='<li class="location_detail" data-id='+value.id+' data-lat='+value.address_lat+' data-lng='+value.address_lng+'><p class="dizhi_name address_detailed">' +province+value.city_city+value.city_district+value.address_detailed+ '<p class="dizhi_P"><span class="address_name">' +value.address_name+ '</span><span style="margin-left:5%;" class="address_tel">' +value.address_tel+ '</span></p></li>' ;
+								})
+								$('.shouhuo_dizhiUl').html(content);
+							}
+						}
+					})
+	            }else{
+	            	window.location.href = '/api/wechat/oauth';
+	            }
+			})
+		});
+	   	$('.location_now').on('click',function(){
+	       location.href='/wechat/index/index';          
+	    });
+	    var param = window.location.search;
+	    var llal = param.split("=");
+	    if(llal[1] == 'index'){
+	    	$(document).on('click','.location_detail',function(){
+		    	var lat = $(this).attr('data-lat');
+		    	var lng = $(this).attr('data-lng');
+		    	location.href='/wechat/index/index?lat='+lat+'&lng='+lng;   
+		    }) 
+	    }else if(llal[1] == 'order'){
+	    	$(document).on('click','.location_detail',function(){
+	    		var id = $(this).attr('data-id');
+		    	var address_detailed = $('.address_detailed').text();
+		    	var address_name = $('.address_name').text();
+		    	var address_tel = $('.address_tel').text();
+		    	location.href='/wechat/order/index?address_id='+id+'&address_detailed='+address_detailed+'&address_name='+address_name+'&address_tel='+address_tel;   
+		    }) 
+	    }
+	    
+		$('.diszhi_btn_a').on('click',function(){
+			location.href = '/wechat/index/add_address';
+		})
+		$('.logoSpanH').on('click',function(){
+            //点击后跳转到收获地址栏
+            location.href='/wechat/index/index';
+        })
+        $('.logoGh').on('click',function(){
+            //点击后跳转到购物栏
+            location.href='/wechat/Cart/cart';
+        })
+        $('.logoRh').on('click',function(){
+            //点击后跳转到收获地址栏
+            location.href='/wechat/index/medicine';
+        })
+	</script>
+
+</html>

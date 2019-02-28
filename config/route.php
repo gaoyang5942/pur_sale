@@ -1,0 +1,6 @@
+<?php
+
+$runtimeRoutes = [
+];
+
+return $runtimeRoutes;

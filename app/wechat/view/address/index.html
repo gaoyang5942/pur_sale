@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>地址管理</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/dizhiguanli.css" />
+		<style type="text/css">
+			body {
+				background: #EFEFF4;
+			}
+			.dizhi_guanli_Div{
+				  width: 40px;
+			    height: 40px;
+			    background: #cdcdcd;
+			    border-radius: 50px;
+			    margin-top: 1rem;
+			    text-align: center;
+			    line-height: 40px;
+			    font-size: 14px;
+			    color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="container_Div">
+				<form action="" method="post">
+				<div class="a">
+				</div>
+				<!--增加按钮-->
+				<div class="diszhi_btn">
+					<a href="add_address.html" class="diszhi_btn_a">新增地址</a>
+				</div>
+				<!--增加按钮 end-->
+				</form>
+			</div>
+		</div>
+		<!--错误提示-->
+		<div class="cuowu iframe cuowu_div" id="iframe" style="display: none">
+			<p class="p1">无法操作</p>
+			<p class="p"><img src="__STATIC__/wechat/img/cuowu_tishi.png" style="width: 15%;" /></p>
+			<p class="p2"></p>
+			<p class="p3"><a href="#">知道了</a></p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs" style="display: none"></div>
+		<!--错误提示 end-->
+		<!--确定删除-->
+		<div class="cuowu1 iframe cuowu_div" id="iframe1" style="display: none">
+			<p class="p1" style="text-align: center;">确定是否删除</p>
+			<p style="border-top: 1px solid #cdcdcd;">
+				<span class="quandian_p">确定</span>
+				<span class="p4">取消</span>
+			</p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs1" style="display: none"></div>
+		<!--确定删除 end-->
+		<footer>
+		<nav>
+			<ul>
+				<li>
+					<a href="javascript:void(0)" class="logoSpanH">
+						<span class="foot_logoSpan"><img src="__STATIC__/wechat/img/foot_logofh.png"/></span>
+						<span class="foot_logoSpan">首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" class="logoGh">
+						<span><img src="__STATIC__/wechat/img/foot_logoGh.png"/></span>
+						<span class="foot_logoSpan">购物車</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" class="logoRh">
+						<span><img src="__STATIC__/wechat/img/geren_blue.png" /></span>
+						<span class="foot_logoSpanH">我的</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</footer>
+	</body>
+	<script src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    //登录授予权限
+            $.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+            });
+			//我的地址接口
+			$.post('/api/wechat/my_address',{},function(res){
+				var content='';
+
+				var res = JSON.parse(res);
+				if(res.code == 200){
+					if(res.data.length > 0){
+						$.each(res.data,function(name,value){
+							if(value.city_province){
+								var province = value.city_province+'省 ';
+							}
+							var check = '';
+							if(value.address_flag == 1)
+							{
+								check = 'checked';
+					
+							}
+							content +='<div class="dizhi_guanli"><div class="dizhi_guanli_div"><div class="dizhi_guanli_img"><div class="dizhi_guanli_Div">地址</div></div><div class="dizhi_guanli_divD"><p class="dizhi_guanli_divP"><span class="dizhi_guanli_divS">' +value.address_name+ '</span><span class="dizhi_guanli_divS1">' +value.address_tel+ '</span></p><p class="dizhi_guanli_divP1">' +province+value.city_city+value.city_district+value.address_detailed+ '</p></div></div><div class="dizhi_guanli_div2"><div class="dizhi_guanli_form1"><input type="radio" class="tab2_zhifu" name="Fruit" id="' +value.id+ '" '+check+'><label for="' +value.id+ '"></label><span>默认地址</span>	</div><div class="dizhi_guanli_form2"><a href="#" class="dizhi_guanli_formA1" id="'+value.id+'">删除</a><a href="#" class="dizhi_guanli_formA2" id="'+value.id+'">编辑</a></div></div><div class="clear"></div></div>';
+						})
+						$('.a').html(content);
+
+					}
+				}else if(res.code == 202){
+						$('.cuowu.iframe').show();
+						$('.p2').text('获取地址失败！');
+				}
+			})
+				$(document).on('click','.p3',function(){
+						$("#iframe").hide();
+						$("#cuowuTs").hide();
+					})
+		});
+		$(document).on('click','.tab2_zhifu',function(){
+			var id = $(this).attr('id');
+			$.post('/api/address/edit_state',{id:id},function(res){ 
+				if(res.code == 202){
+					$('.cuowu.iframe').show();
+					$('.p2').text('修改失败！');	
+			}
+			})
+			$(document).on('click','.p3',function(){
+					$("#iframe").hide();
+					$("#cuowuTs").hide();
+				})
+		});
+		$(document).on('click','.dizhi_guanli .dizhi_guanli_formA1',function(){
+			var id = $(this).attr('id');
+			$(function() { //错误提示js
+				$("#iframe1").show();
+				$("#cuowuTs1").show();
+			});
+			$('.quandian_p').click(function(){
+				$.post('/api/address/del_address',{id:id},function(res){
+					if(res.code == 200){
+						window.location.reload();
+					}else if(res.code == 202){
+						$("#iframe1").hide();
+						$("#cuowuTs1").hide();
+						$('.cuowu.iframe').show();
+						$('.p2').text('删除失败！');
+					}
+				})
+					$(document).on('click','.p3',function(){
+						$("#iframe").hide();
+						$("#cuowuTs").hide();
+					})
+				})
+					$('.p4').click(function(){
+						$("#iframe1").hide();
+						$("#cuowuTs1").hide();
+					})
+
+		});
+		$(document).on('click','.dizhi_guanli_formA2',function(){
+			var id = $(this).attr('id');
+			location.href = '/wechat/address/edit_address?id='+id;
+		});
+		$('.diszhi_btn_a').on('click',function(){
+			location.href = '/wechat/address/add_address';
+		});
+		$(function() { //错误提示js
+			$("#iframe").hide();
+			$("#cuowuTs").hide();
+		});
+		$(".p3").click(function() { //错误提示js
+			$("#iframe").toggle();
+			$("#cuowuTs").toggle();
+		});
+		$("#cuowuTs").click(function() { //错误提示js
+			$("#iframe").hide()
+			$("#cuowuTs").hide()
+		});
+		$(function() { //错误提示js
+			$("#iframe1").hide();
+			$("#cuowuTs1").hide();
+		});
+		$('.logoSpanH').on('click',function(){
+            //点击后跳转到收获地址栏
+            location.href='/wechat/index/index';
+        })
+        $('.logoGh').on('click',function(){
+            //点击后跳转到购物栏
+            location.href='/wechat/Cart/cart';
+        })
+        $('.logoRh').on('click',function(){
+            //点击后跳转到收获地址栏
+            location.href='/wechat/index/medicine';
+        })
+	</script>
+
+</html>

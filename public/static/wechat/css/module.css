@@ -1,0 +1,284 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+/*购物车*/
+
+.shopping {
+	clear: both;
+	overflow: hidden;
+	height: auto;
+	padding-bottom: 60px;
+	margin-top: 0.5rem;
+}
+
+.shop-group-item {
+	margin-bottom: 5px;
+    /*height: 290px;*/
+    overflow-x: hidden;
+}
+
+.shop-group-item ul li {
+	border-bottom: 1px solid #F4F4F4;
+}
+
+.shop-group-item ul li:last-child {
+	border-bottom: none;
+}
+
+.shop-name {
+	background: #fff;
+    width: 94%;
+    padding: 0 15px;
+    position: relative;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.shop-name h4 {
+	float: left;
+    display: inline-block;
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    background: url(../images/icon/icon-kin.png) no-repeat left center;
+    background-size: 20px 20px;
+    padding-left: 25px;
+}
+.shop-name h4 a{
+	display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shop-name .coupons {
+	width: 63px;
+    display: inline-block;
+    float: right;
+    height: 26px;
+}
+
+.coupons img {
+	display: inline-block;
+	width: 13px;
+    margin-right: 0.2rem;
+}
+
+.shop-name .coupons span {
+	display: inline-block;
+	padding: 0 5px;
+}
+
+.shop-name .coupons em {
+	color: #e0e0e0;
+}
+
+.shop-info {
+	background: white;
+	height: 120px;
+	padding: 0 15px;
+	position: relative;
+}
+
+.shop-info .checkbox {
+	background: url(../images/icon/icon_radio3.png) no-repeat left center;
+	background-size: 20px 20px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	margin-top: -60px;
+	width: 20px;
+	height: 120px;
+}
+
+.shop-info .checkbox1 {
+	background: url(../images/icon/icon_radio4.png) no-repeat left center;
+	background-size: 20px 20px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	margin-top: -60px;
+	width: 20px;
+	height: 120px;
+}
+
+.shop-info .shop-info-img {
+	position: absolute;
+	top: 15px;
+	left: 45px;
+	width: 90px;
+	height: 90px;
+}
+
+.shop-info .shop-info-img img {
+	width: 100%;
+	height: 100%;
+}
+
+.shop-info .shop-info-text {
+	margin-left: 130px;
+	padding: 15px 0;
+}
+
+.shop-info .shop-info-text h4 {
+	font-size: 14px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.shop-info .shop-info-text .shop-brief {
+	/*height: 25px;
+	line-height: 25px;*/
+	font-size: 12px;
+	color: #81838e;
+	/*white-space: nowrap;*/
+}
+
+.shop-info .shop-info-text .shop-brief span {
+    /*display: inline-block;*/
+    margin-right: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.shop-info .shop-info-text .shop-price {
+	height: 24px;
+	line-height: 24px;
+	position: relative;
+	margin-top: 0.2rem;
+}
+
+.shop-info .shop-info-text .shop-price .shop-pices {
+	color: red;
+	font-size: 16px;
+}
+
+.shop-info .shop-info-text .shop-arithmetic {
+	position: absolute;
+	right: 0px;
+	top: 0;
+	width: 100px;
+	box-sizing: border-box;
+	white-space: nowrap;
+	height: 100%;
+	border: 1px solid #e0e0e0;
+}
+
+.shop-info .shop-info-text .shop-arithmetic a {
+	display: inline-block;
+	width: 23px;
+	height: 22px;
+	line-height: 22px;
+	text-align: center;
+	background: #fff;
+	font-size: 16px;
+}
+
+.shop-info .shop-info-text .shop-arithmetic .minus {
+	border-right: 1px solid #e0e0e0;
+}
+
+.shop-info .shop-info-text .shop-arithmetic .failed {
+	color: #d1d1d1;
+}
+
+.shop-info .shop-info-text .shop-arithmetic .plus {
+	background: #57AAEE;
+	color: white;
+	float: right;
+}
+
+.shop-info .shop-info-text .shop-arithmetic .num {
+	width: 32px;
+	text-align: center;
+	border: none;
+	display: inline-block;
+	height: 100%;
+	box-sizing: border-box;
+	vertical-align: top;
+	margin: 0 -6px;
+}
+
+.shopPrice {
+	background: #fff;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 0.2rem;
+	padding-left: 1rem;
+	font-size: 17px;
+}
+
+.shopPrice span {
+	color: #f00;
+	font-size: 20px;
+}
+
+.shopPrice a {
+	display: inline-block;
+	width: 80px;
+	height: 50px;
+	font-size: 17px;
+	text-align: center;
+	line-height: 50px;
+	background: #09BA07;
+	color: white;
+	float: right;
+}
+
+.payment-bar {
+	clear: both;
+	overflow: hidden;
+	width: 100%;
+	height: 49px;
+	position: fixed;
+	bottom: 0;
+	border-top: 1px solid #e0e0e0;
+	background: #fff;
+}
+
+.payment-bar .all-checkbox {
+	float: left;
+	line-height: 49px;
+	padding-left: 40px;
+}
+
+.payment-bar .shop-total {
+	float: left;
+	-webkit-box-flex: 1.0;
+	box-flex: 1.0;
+	margin: 9px 20px 9px 35px;
+}
+
+.payment-bar .shop-total strong {
+	display: block;
+	font-size: 17px;
+}
+
+.shop-total strong .total {
+	color: #F34B42;
+}
+
+.payment-bar .shop-total span {
+	display: block;
+	font-size: 12px;
+}
+
+.payment-bar .settlement {
+	display: inline-block;
+	float: right;
+	width: 100px;
+	height: 49px;
+	line-height: 49px;
+	text-align: center;
+	color: #fff;
+	font-size: 17px;
+	background: #09BA07;
+}

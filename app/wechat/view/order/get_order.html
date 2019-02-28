@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/dizhiguanli.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/wodingdan.css" />
+	</head>
+
+	<body>
+		<!-- <header>
+			<div class="dingdxq_head">
+				<img src="__STATIC__/wechat/img/dingwei_logo.png" />
+				<div class="dingdxq_head_div">
+					<p>
+						<span class="dingdxq_head_name"></span>
+						<span class="dingdxq_head_num"></span>
+					</p>
+					<a href="javascript:void(0)" id="addr_detail">配送地址：</a>
+				</div>
+			</div>
+		</header> -->
+		<div class="container_xq">
+			<div class="container_Div">
+
+				<div class="ywcheng">
+					<div class="ywcheng_h">
+						<a href="#" class="ywcheng_h_a" id="pharmacy">
+							<img src="__STATIC__/wechat/img/yaodian_img.png" />
+							<span id="pharmacy_name"></span>
+						</a>
+					</div>
+					<div class="ywcheng_mian">
+						<div class="ywcheng_mian_sp">
+							
+						</div>
+					</div>
+
+				</div>
+				<div class="dingdxq_mian_div">
+					<ul class="dingdxq_mian_div_ul">
+						<li>
+							<span class="dingdxq_mian_div_span">商品总价 : </span>
+							<span class="dingdxq_mian_div_span2" id="sub_total"></span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">优惠金额 : </span>
+							<span class="dingdxq_mian_div_span2" id="discount"></span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">医保支付 : </span>
+							<span class="dingdxq_mian_div_span2" id="medical_pay"></span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">自费支付 : </span>
+							<span class="dingdxq_mian_div_span2" id="self_pay"></span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">配送费 : </span>
+							<span class="dingdxq_mian_div_span2" id="shipping"></span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">本次积分 : </span>
+							<span class="dingdxq_mian_div_span2" id="integral"></span>
+						</li>
+						
+						<li>
+							<span class="dingdxq_mian_div_span">订单总价 : </span>
+							<span class="dingdxq_mian_div_span3" id="total">￥<span class="total"></span></span>
+						</li>
+					</ul>
+				</div>
+				<div class="peisong">
+					<div class="ywcheng_h">
+						<a href="#" class="ywcheng_h_a">
+							<span>订单详情</span>
+						</a>
+					</div>
+					<div class="dingdxq_mian_div">
+						<ul class="dingdxq_mian_div_ul">
+							<li>
+								<span class="dingdxq_bh_span">订单编号 : </span>
+								<span class="" id="drugorder_number"></span>
+							</li>
+							<li>
+								<span class="dingdxq_bh_span">下单时间 : </span>
+								<span class="" id="drugorder_create_time"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="clear"></div>
+
+			</div>
+		</div>
+		<!--错误提示-->
+		<div class="cuowu iframe" style="display: none">
+			<p class="p1">无法操作</p>
+			<p class="p"><img src="__STATIC__/wechat/img/cuowu_tishi.png" style="width: 15%;"/></p>
+			<p class="p2"></p>
+			<p class="p3"><a href="javascript:void(0)" onclick="location.href = 'all'">知道了</a></p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs" style="display: none"></div>
+		<!--错误提示 end-->
+		<footer class="daifahuo_footer">
+			<div class="foot_daifuK">
+				<span class="foot_daifuK_zj">总计 : </span>
+				<span class="foot_daifuK_num"><small>￥</small><span class="total"></span></span>
+				<a href="javascript:void(0)" id="pay_order" onclick="create_order()" style="pointer-events:none">去结算(<span class="drug_num"></span>)</a>
+			</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/base.js"></script>
+	<script type="text/javascript">
+		var param = get_url_param();
+		var cart_ids = param.order_no ? param.order_no : 0;
+		$(document).ready(function(){
+			$.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+                else if(data.code == '200')
+                {
+                	var param = get_url_param();
+					var order_no = param.order_no;
+					var jump_t =  param.jump_type;
+					//更新订单uid 确定该订单属于某人
+					$.post("/api/order/update_order_uid",{'order_no':order_no,'jump_t':jump_t},function(data){
+						if(data.code == 200){
+							$.ajax({
+								type: 'post',
+								url: '/api/order/get_order_detail',
+								data: {order_no: order_no},
+								success: function(response){
+									console.log(response);
+									if(response.code == 200)
+									{
+										var order_detail = response.order_detail;
+
+										$('#pharmacy').attr('href', '/wechat/Pharmacy?f_id='+order_detail.pharmacy.id);
+										$('#pharmacy_name').text(order_detail.pharmacy.pharmacy_name);
+
+										// <ul class="dingdxq_mian_sp_ul1">
+										// 	<li class="ywcheng_mian_ulImg1">
+										// 		<img src="__STATIC__/wechat/img/ef0591ef1e7e8d5f1ffbc98ba859d59.png" />
+										// 	</li>
+										// 	<li class="ywcheng_mian_ulText">
+										// 		<p class="ywcheng_mian_p1">藿香正气水</p>
+										// 		<p class="gybgg">该药品规格</p>
+										// 		<p class="ywcheng_mian_p">
+										// 			<span class="ywcheng_mian_num1">￥12.00</span>
+										// 			<span class="ywcheng_mian_num">x1</span>
+										// 		</p>
+										// 	</li>
+										// </ul>
+
+										var drug_list = '';
+										for(var drug of order_detail.orderproducts)
+										{
+											drug_list += '<ul class="dingdxq_mian_sp_ul1">';
+											drug_list += '<li class="ywcheng_mian_ulImg1">';
+											if(drug.detail.drug_detailed_img)
+											{
+												drug_list += '<img src="__UPLOAD__/'+drug.detail.drug_detailed_img+'" />';
+											}
+											else
+											{
+												drug_list += '<img src="__STATIC__/wechat/img/none.jpg"';
+											}
+											drug_list += '</li>';
+											drug_list += '<li class="ywcheng_mian_ulText">';
+											drug_list += '<p class="ywcheng_mian_p1">'+drug.detail.drug_detailed_name+'</p>';
+											drug_list += '<p class="gybgg">'+drug.detail.drug_detailed_specifications+'</p>';
+											drug_list += '<p class="ywcheng_mian_p">';
+											drug_list += '<span class="ywcheng_mian_num1">￥'+drug.drugstore_pre_price/100+'</span>';
+											drug_list += '<span class="ywcheng_mian_num">x'+drug.drugstore_num+'</span>';
+											drug_list += '</p>';
+											drug_list += '</li>';
+											drug_list += '</ul>';
+										}
+										$('.ywcheng_mian_sp').append(drug_list);
+		 
+										$('#drugorder_number').append(order_detail.drugorder_number);
+										$('#drugorder_create_time').append(order_detail.drugorder_create_time);
+
+										$('#sub_total').text('￥' + (order_detail.drugorder_total_fee/100).toFixed(2));
+										$('#discount').text('￥' + (order_detail.drugorder_pre_fee/100).toFixed(2));
+										$('#medical_pay').text('￥' + (order_detail.drugorder_medical_fee/100).toFixed(2));
+										$('#self_pay').text('￥' + (order_detail.drugorder_self_fee/100).toFixed(2));
+										$('#shipping').text('￥' + (order_detail.drugorder_transport_fee/100).toFixed(2));
+										$('#integral').text(Math.floor(order_detail.drugorder_amount_payment));
+										$('.total').text((order_detail.drugorder_amount_payment/100).toFixed(2));
+
+										$('.drug_num').text(order_detail.orderproducts.length);
+										$('#pay_order').css('pointer-events', 'auto');
+									}
+									else
+									{
+										$('.cuowu.iframe').show();
+										$('.cuowuTs').show();
+										$('.p2').text(response.msg);
+									}
+								},
+								error: function(error){
+									console.log(error);
+									$('.cuowu.iframe').show();
+									$('.cuowuTs').show();
+									$('.p2').text('获取订单详情失败');
+								}
+							});
+						}else{
+							$('.cuowu.iframe').show();
+							$('.cuowuTs').show();
+							$('.p2').text(data.msg);
+						}
+					})
+					
+                }
+            });
+
+			$(".p3").click(function() { //错误提示js
+				$("#iframe").hide();
+				$("#cuowuTs").hide();
+			});
+			$("#cuowuTs").click(function() { //错误提示js
+				$("#iframe").hide()
+				$("#cuowuTs").hide()
+			});
+		});
+		function create_order()
+	{
+		location.href = '/wechat/weins/weinspay?order_no=' + cart_ids;
+	}
+	</script>
+</html>

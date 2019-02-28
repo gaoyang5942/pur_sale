@@ -1,0 +1,485 @@
+---------------------------------------------------------------
+[ 2019-02-28T15:12:37+08:00 ] 127.0.0.1 GET /admin/setting/clear_cache.html
+[ info ] localhost:8080/admin/setting/clear_cache.html [运行时间：0.057071s][吞吐率：17.52req/s] [内存消耗：512.45kb] [文件加载：65]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'setting',
+    2 => 'clear_cache',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://localhost:8080/admin/index/index.html',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'cookie' => 'thinkphp_show_page_trace=0|0; admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\SettingController->clear_cache[ /usr/local/var/www/pur_sale/app/admin/controller/SettingController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'httponly' => true,
+  'secure' => false,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /usr/local/var/www/pur_sale/public/../app/admin/view/setting/clear_cache.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义变量: themePath[/usr/local/var/www/pur_sale/think/thinkphp/library/think/View.php:47]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000428s ] mysql:host=localhost;port=3306;dbname=member;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yb_system_log` [ RunTime:0.000662s ]
+[ sql ] [ SQL ] INSERT INTO `yb_system_log` (`type` , `description` , `uid` , `module` , `controller` , `action` , `data` , `create_time`) VALUES (2 , '清除缓存' , 1 , 'admin' , 'Setting' , 'clear_cache' , 'a:0:{}' , '1551337957') [ RunTime:0.001596s ]
+---------------------------------------------------------------
+[ 2019-02-28T15:12:39+08:00 ] 127.0.0.1 GET /admin/index/index.html
+[ info ] localhost:8080/admin/index/index.html [运行时间：0.016564s][吞吐率：60.37req/s] [内存消耗：625.74kb] [文件加载：74]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://localhost:8080/admin/public/login.html',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'cookie' => 'thinkphp_show_page_trace=0|0; admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'httponly' => true,
+  'secure' => false,
+)
+[ info ] [ RUN ] app\admin\controller\IndexController->index[ /usr/local/var/www/pur_sale/app/admin/controller/IndexController.php ]
+[ info ] [ VIEW ] /usr/local/var/www/pur_sale/public/../app/admin/view/index/index.html [ array (
+  0 => 'admin',
+  1 => 'menus',
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义变量: themePath[/usr/local/var/www/pur_sale/think/thinkphp/library/think/View.php:47]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000529s ] mysql:host=localhost;port=3306;dbname=member;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yb_option` [ RunTime:0.000946s ]
+[ sql ] [ SQL ] SELECT `option_value` FROM `yb_option` WHERE  `option_name` = 'admin_settings' LIMIT 1 [ RunTime:0.000319s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yb_user` [ RunTime:0.000832s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000412s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yb_admin_menu` [ RunTime:0.000585s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 0  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000539s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 109  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000522s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 50  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000487s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 110  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000478s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 281  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000416s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 282  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000414s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 139  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000489s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 140  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000418s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_admin_menu` WHERE  `parent_id` = 141  AND `status` = 1 ORDER BY `list_order`  ASC [ RunTime:0.000412s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000404s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000294s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000282s ]
+---------------------------------------------------------------
+[ 2019-02-28T15:12:39+08:00 ] 127.0.0.1 GET /admin/main/index.html
+[ info ] localhost:8080/admin/main/index.html [运行时间：0.009864s][吞吐率：101.38req/s] [内存消耗：556.23kb] [文件加载：68]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'main',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://localhost:8080/admin/index/index.html',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'cookie' => 'thinkphp_show_page_trace=0|0; admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'httponly' => true,
+  'secure' => false,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\MainController->index[ /usr/local/var/www/pur_sale/app/admin/controller/MainController.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /usr/local/var/www/pur_sale/public/../app/admin/view/main/index.html [ array (
+  0 => 'admin',
+  1 => 'dashboard_widgets',
+  2 => 'dashboard_widget_plugins',
+  3 => 'has_smtp_setting',
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义变量: themePath[/usr/local/var/www/pur_sale/think/thinkphp/library/think/View.php:47]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000718s ] mysql:host=localhost;port=3306;dbname=member;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yb_user` [ RunTime:0.001228s ]
+[ sql ] [ SQL ] SELECT * FROM `yb_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000727s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yb_option` [ RunTime:0.001156s ]
+[ sql ] [ SQL ] SELECT `option_value` FROM `yb_option` WHERE  `option_name` = 'admin_dashboard_widgets' LIMIT 1 [ RunTime:0.000573s ]
+[ sql ] [ SQL ] SELECT `option_value` FROM `yb_option` WHERE  `option_name` = 'smtp_setting' LIMIT 1 [ RunTime:0.000285s ]
+---------------------------------------------------------------
+[ 2019-02-28T15:13:19+08:00 ] 127.0.0.1 GET /
+[ info ] localhost:8080/ [运行时间：0.002457s][吞吐率：406.98req/s] [内存消耗：273.48kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-28T15:13:27+08:00 ] 127.0.0.1 GET /pur_sale/public/index
+[ info ] localhost:8080/pur_sale/public/index [运行时间：0.002336s][吞吐率：428.12req/s] [内存消耗：276.84kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pur_sale',
+    1 => 'public',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-28T15:13:45+08:00 ] 127.0.0.1 GET /public/index
+[ info ] localhost:8080/public/index [运行时间：0.002193s][吞吐率：456.00req/s] [内存消耗：276.79kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'public',
+    1 => 'index',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-28T15:13:45+08:00 ] 127.0.0.1 GET /favicon.ico
+[ info ] localhost:8080/favicon.ico [运行时间：0.001642s][吞吐率：609.02req/s] [内存消耗：276.70kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://localhost:8080/public/index',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'connection' => 'keep-alive',
+  'accept' => '*/*',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-28T15:13:51+08:00 ] 127.0.0.1 GET /index.php/pur_sale/user/create
+[ info ] localhost:8080/index.php/pur_sale/user/create [运行时间：0.001683s][吞吐率：594.18req/s] [内存消耗：273.66kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pur_sale',
+    1 => 'user',
+    2 => 'create',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-28T15:13:59+08:00 ] 127.0.0.1 GET /wechat/index/index
+[ info ] localhost:8080/wechat/index/index [运行时间：0.002950s][吞吐率：338.99req/s] [内存消耗：276.83kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wechat',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-28T15:13:59+08:00 ] 127.0.0.1 GET /favicon.ico
+[ info ] localhost:8080/favicon.ico [运行时间：0.001609s][吞吐率：621.56req/s] [内存消耗：276.70kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://localhost:8080/wechat/index/index',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'connection' => 'keep-alive',
+  'accept' => '*/*',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-28T15:17:30+08:00 ] 127.0.0.1 GET /wechat/index/index
+[ info ] localhost:8080/wechat/index/index [运行时间：0.009197s][吞吐率：108.73req/s] [内存消耗：335.18kb] [文件加载：58]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wechat',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\wechat\controller\IndexController->index[ /usr/local/var/www/pur_sale/app/wechat/controller/IndexController.php ]
+[ info ] [ VIEW ] /usr/local/var/www/pur_sale/public/../app/wechat/view/index/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义变量: themePath[/usr/local/var/www/pur_sale/think/thinkphp/library/think/View.php:47]
+---------------------------------------------------------------
+[ 2019-02-28T15:17:48+08:00 ] 127.0.0.1 GET /wechat/index/index
+[ info ] localhost:8080/wechat/index/index [运行时间：0.004825s][吞吐率：207.25req/s] [内存消耗：334.79kb] [文件加载：58]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wechat',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\wechat\controller\IndexController->index[ /usr/local/var/www/pur_sale/app/wechat/controller/IndexController.php ]
+[ info ] [ VIEW ] /usr/local/var/www/pur_sale/public/../app/wechat/view/index/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义变量: themePath[/usr/local/var/www/pur_sale/think/thinkphp/library/think/View.php:47]
+---------------------------------------------------------------
+[ 2019-02-28T15:17:50+08:00 ] 127.0.0.1 GET /wechat/index/search
+[ info ] localhost:8080/wechat/index/search [运行时间：0.005555s][吞吐率：180.02req/s] [内存消耗：335.20kb] [文件加载：58]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wechat',
+    1 => 'index',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://localhost:8080/wechat/index/index',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\wechat\controller\IndexController->search[ /usr/local/var/www/pur_sale/app/wechat/controller/IndexController.php ]
+[ info ] [ VIEW ] /usr/local/var/www/pur_sale/public/../app/wechat/view/index/search.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义变量: themePath[/usr/local/var/www/pur_sale/think/thinkphp/library/think/View.php:47]
+---------------------------------------------------------------
+[ 2019-02-28T15:17:50+08:00 ] 127.0.0.1 GET /favicon.ico
+[ info ] localhost:8080/favicon.ico [运行时间：0.046518s][吞吐率：21.50req/s] [内存消耗：276.70kb] [文件加载：45]
+[ info ] [ LANG ] /usr/local/var/www/pur_sale/think/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://localhost:8080/wechat/index/search',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15',
+  'cookie' => 'admin_username=admin; thinkphp_show_page_trace=0|0; PHPSESSID=djfbp3ettnn457qjedeetjermo',
+  'connection' => 'keep-alive',
+  'accept' => '*/*',
+  'host' => 'localhost:8080',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

@@ -1,0 +1,412 @@
+@charset "utf-8";
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /*font-size: 62.5%;*/
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: "宋体", "微软雅黑";
+    -webkit-appearance: none;
+    font-size: 0.875rem;
+    background: #efeff4;
+}
+
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+
+/*添加地址*/
+
+.add-list {
+    margin-top: 1rem;
+}
+
+.add-required {
+    width: 100%;
+    height: 2.75rem;
+    line-height: 2.75rem;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.add-required label {
+    width: 25%;
+    color: #000;
+}
+
+.add-required input {
+    width: 75%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    /*margin-left: 1rem;*/
+}
+
+.add-required a {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #b2b2b2;
+}
+
+.add-required a img {
+    width: 1rem;
+    margin-right: 0.5rem;
+    /*height: 1rem;*/
+}
+
+.provide {
+    margin-top: 1rem;
+}
+
+.provide h1 {
+    padding: 0 1rem;
+    box-sizing: border-box;
+    color: #b2b2b2;
+    font-size: 0.875rem;
+}
+
+.datum {
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 0.5rem;
+}
+
+.datum-pic {
+    width: 100%;
+    height: 9rem;
+    text-align: center;
+    background: #fff;
+    border: 1px dashed #dadada;
+}
+
+.datum .datum-file {
+    width: 92%;
+    height: 9rem;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    opacity: 0;
+}
+
+.datum-pic img {
+    /*width: 3.125rem;*/
+    /*height: 3.125rem;*/
+    margin-top: 1.5rem;
+}
+
+.datum-pic p {
+    color: #b2b2b2;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.datum-pic span {
+    color: #b2b2b2;
+}
+
+.index-btn {
+    margin-top: 1rem !important;
+}
+
+
+/*选择配送药店*/
+
+.mcontainer_bottom {
+    padding-bottom: 56px;
+}
+
+.mxzks {
+    overflow: hidden;
+}
+
+.mkslist {
+    width: 50%;
+    float: left;
+    background-color: #f4f4f4;
+}
+
+.mkslist li {
+    line-height: 44px;
+    padding-left: 20px;
+    color: #878484;
+    border-bottom: 1px solid #dbdada;
+}
+
+.mmzlist li a {
+    color: #a1a1a1;
+}
+
+.menzhen {
+    overflow: hidden;
+}
+
+.mmzlist {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    display: none;
+}
+
+.mselected {
+    background: url(../img/sanjiao.png) 20px center no-repeat;
+    background-size: 10px 10px;
+    padding-left: 40px !important;
+    background-color: #fff;
+    color: #34a3fd;
+}
+
+.on {
+    display: block;
+}
+
+.checkbox-style {
+    margin-top: 0 !important;
+    font-size: 0.75rem !important;
+    margin-left: 1rem;
+}
+
+.store-name {
+    font-size: 0.875rem;
+}
+
+
+/*配送中*/
+
+.distribution-top {
+    width: 100%;
+    background: #fff;
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+}
+
+.maps {
+    width: 95%;
+    margin: 0 auto;
+    height: 18.75rem;
+    border: 1px solid #87c3f5;
+    border-radius: 0.5rem;
+}
+
+.distribution-detail {
+    width: 100%;
+   /* height: 2.5rem;
+    line-height: 2.5rem;*/
+    display: flex;
+    padding: 0.5rem 0;
+}
+
+.distribution-list {
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.distribution-detail p {
+    width: 25%;
+}
+
+.order-details {
+    width: 100%;
+    background: #fff;
+    margin-top: 1rem;
+}
+
+.phone-number a {
+    color: #4d41fd;
+}
+
+.distribution-postion {
+    position: relative;
+}
+
+.phone {
+    height: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #34a3fd;
+    border-radius: 1rem;
+    padding: 0 0.5rem;
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+}
+
+.phone a {
+    display: flex;
+    margin-left: 0.5rem;
+    color: #34a3fd;
+}
+
+.phone img {
+    width: 1rem;
+    height: 1rem;
+}
+
+.order-font {
+    font-weight: 700;
+}
+
+.order-lists {
+    width: 100%;
+    display: flex;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+}
+
+.order-lists .order-name {
+    width: 35%;
+    /*text-alisgn: center;*/
+}
+
+.order-lists .order-name p {
+    font-size: 0.875rem;
+}
+
+.order-lists .order-name span {
+    color: #51a7f0;
+    font-size: 0.75rem;
+}
+
+.order-lists .order-address {
+    color: #747474;
+    width: 55%;
+}
+
+.order-lists .order-price {
+    width: 20%;
+    text-align: right;
+}
+
+.order-lists .order-price p {
+    color: #ff0204;
+}
+
+.order-lists .order-price span {
+    color: #747474;
+}
+
+.order-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e5e4e9;
+}
+
+.order-totle {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    text-align: right;
+    border-top: 1px solid #e5e4e9;
+}
+
+.order-totle span {
+    color: #ff0204;
+    margin-left: 0.5rem;
+}
+
+.order-pic {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.order-pic img {
+    width: 7.28125rem;
+    height: 7.28125rem;
+}
+
+.order-details button {
+    width: 70%;
+    height: 2.5rem;
+    display: block;
+    background: #09ba07;
+    color: #fff;
+    margin: 1rem auto;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.order-bottom {
+    padding: 0 1rem 1rem 1rem;
+    box-sizing: border-box;
+}
+
+
+/**/
+
+.container button {
+    width: 100%;
+    height: 2.5rem;
+    background: #09ba07;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+
+
+/*订单详情*/
+
+.phone-two {
+    width: 100%;
+    text-align: right;
+}
+
+.phone-two a {
+    border: 1px solid #34a3fd;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+}
+
+.phone-two img {
+    width: 1rem;
+    height: 1rem;
+}
+
+.receipt {
+    width: 100%;
+    padding: 0 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+.receipt button {
+    width: 100%;
+    background: #09ba07;
+    border-radius: 0.8rem;
+}

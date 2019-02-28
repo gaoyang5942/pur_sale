@@ -1,0 +1,522 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link type="text/css" rel="stylesheet" href="__STATIC__/wechat/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="__STATIC__/wechat/css/module.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="__STATIC__/wechat/css/yaodian_index.css" />
+		<style type="text/css">
+			.shopPrice .settle_green {
+				display: inline-block;
+				width: 80px;
+				height: 50px;
+				font-size: 17px;
+				text-align: center;
+				line-height: 50px;
+				background: #09BA07;
+				color: white;
+				float: right;
+			}
+
+			.shopPrice .settle_gray {
+				display: inline-block;
+				width: 80px;
+				height: 50px;
+				font-size: 17px;
+				text-align: center;
+				line-height: 50px;
+				background: #999;
+				color: white;
+				float: right;
+			}
+
+			.goods_list ul li {
+				background-color: #FFF;
+				border-bottom: 1px solid #CCC;
+				height: 260px;
+				padding: 40px;
+			}
+			
+			.goods_img {
+				float: left;
+				border: 1px solid #CCC;
+				margin-right: 20px;
+				width: 180px;
+				height: 180px;
+			}
+			
+			.goods_bottom {
+				padding-top: 52px;
+			}
+			
+			.goods_bottom .price {
+				color: #F02028;
+			}
+			
+			.goods_list .num {
+				float: right;
+			}
+			
+			.goods_list .num span {
+				padding: 0 30px;
+			}
+
+			.shop-info .shop-info-text .shop-arithmetic {
+				position: absolute;
+				right: 0px;
+				top: 0;
+				width: 80px;
+				box-sizing: border-box;
+				white-space: nowrap;
+				height: 100%;
+				border: 1px solid #e0e0e0;
+			}
+			.shop-info .shop-info-text .shop-arithmetic .num {
+				width: 42px;
+				text-align: center;
+				border: none;
+				display: inline-block;
+				height: 100%;
+				box-sizing: border-box;
+				vertical-align: top;
+				/* margin: 0 -6px; */
+			}
+			#tab_quyao .form {
+				background: white;
+				text-align: center;
+				padding: 0.5rem 0;
+			}
+			#tab_quyao .form div a {
+				display: block;
+				width: 130px;
+				border: 1px solid;
+				margin: 0 auto;
+				background: #50A7F0;
+				color: white;
+				border-radius: 5px;
+				font-size: 17px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container" style="position: relative;overflow: auto;">
+			<div class="shopping" style="position: relative;">
+				<div class="shop-group-item" id="shop">
+				</div>
+
+			</div>
+			<div class="shopPrice" style="position: fixed;width:96%;bottom:55px;border-bottom:3px solid #EFEFF4;">
+				本店总计 : <span style="font-size: 16px;">￥</span><span class="shop-total-amount ShopTotal">0.00</span>
+				<a href="#" class="menuBtn1 settle_gray" id="settlement" style="width: 105px;">去结算( <span id="sum_num" style="color: white;">0</span> )</a>
+			</div>
+		</div>
+		<!--错误提示-->
+		<div class="cuowu iframe cuowu_div" id="iframe"  style="display: none">
+			<p class="p" style="font-size: large">温馨提示</p>
+			<p class="p2">两家店里的药品不能同时结算哦！</p>
+			<p class="p3">
+				<a>我知道了</a>
+			</p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs" style="display: none"></div>
+		<!--错误提示 end-->
+		<!--取药方式-->
+		<div id="tab_quyao" class="pop1" style="top: 35%; display: none">
+			<div class="tab1_div">
+				<span>请选择取药方式</span>
+				<img src="__STATIC__/wechat/img/dingwei_shanchu.png" id="cover2" />
+			</div>
+			<div class="form">
+				<div>
+					<input type="radio" class="tab1_div1" name="btn" id="btn1" value="setdrug"><label for="btn1">送药上门</label>
+				</div>
+				<div>
+					<input type="radio" class="tab1_div1" name="btn" id="btn2" value="getdrug"><label for="btn2">到店取药</label>
+				</div>
+				<div>
+					<a href="#" class="qingkong1" id="order_sure">确认</a>
+				</div>
+			</div>
+		</div>
+		<div class="cover1" id="cover1"></div>
+		<!--取药方式 end-->
+		<!--确定删除-->
+		<div class="cuowu iframe cuowu_div" id="iframe1" style="display: none">
+			<p class="p1">确定是否删除</p>
+			<p style="border-top: 1px solid #cdcdcd;">
+				<span class="quandian_p" id="clean_sure">确定</span>
+				<span class="p4" id="clean_cancel">取消</span>
+			</p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs1"></div>
+		<!--确定删除 end-->
+		<footer class="footer abs-bottom">
+			<nav>
+				<ul>
+					<li>
+						<a href="/wechat/index/index">
+							<span class="foot_logoSpan"><img src="__STATIC__/wechat/img/foot_logofh.png"/></span>
+							<span class="foot_logoSpan">首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/cart/cart">
+							<span><img src="__STATIC__/wechat/img/foot_logoG.png"/></span>
+							<span class="foot_logoSpanH">购物車</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/index/medicine">
+							<span><img src="__STATIC__/wechat/img/foot_logoRh.png" /></span>
+							<span class="foot_logoSpan">我的</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
+	</body>
+	<script src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/shopping.js"></script>
+	<script type="text/javascript">
+        var hei=$(window).height();//获取设备高度
+        var he=$('.container').height(hei-100);//设备高度==container高度
+        //隐藏错误提示
+        $("#iframe").hide();
+        $("#cuowuTs").hide();
+        //隐藏取药方式
+        $("#tab_quyao").hide();
+        $("#cover1").hide();
+        //隐藏清空购物车的确认删除窗口
+        $("#iframe1").hide();
+        $("#cuowuTs1").hide();
+        //购物车根路径
+		var cart_url = '/api/cart/';
+		$(document).ready(function () {
+            //登录授予权限
+            $.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+            });
+		    //获取用户购物车数据
+			$.get(cart_url+'getallcarts',
+				{uid:"<?php echo session('uid'); ?>"},
+				//测试用
+				// {uid:1},
+				function (res) {
+				if (res.code !== '200'){
+				    alert('访问服务器失败');
+				}
+				// console.log(res.data);
+  				var cart_html = '';//购物车的HTML代码
+				for (var p in res.data){
+				    cart_html += '<div class="shop-group-item">'+
+							'<div class="shop-name">'+
+							'<input type="checkbox" name="check_pharmacy" id="pharmacy" class="check goods-check shopCheck" value="'+ res.data[p].pharmacy_id +'">'+
+							'<h4 id="pharmacy_name"><a href="#">'+ res.data[p].pharmacy_name +'</a></h4>'+
+							'<div class="coupons"><img src="__STATIC__/wechat/img/yaopin_shanchuH.png" /></div>'+
+							'</div>'+
+							'<ul class="gouwu_ul">';
+				    for (var d in res.data[p].list){
+                        cart_html += '<li>'+
+                            '<div class="shop-info">'+
+                            '<input type="checkbox" name="check_drug" id="drug" class="check goods-check goodsCheck" value="'+ res.data[p].list[d].id +'">'+
+                            '<input type="hidden" name="check_pharmacy_id" id="pharmacy_id" value="'+ res.data[p].list[d].pharmacy_id +'">'+
+                            '<input type="hidden"  id="detail_id" value="'+ res.data[p].list[d].detail_id +'">'+
+                            '<div class="shop-info-img">'+
+							'<if condition="'+res.data[p].list[d].cart_drug_pic+' eq 0">'+
+                            '<a href="#"><img class="jump_detail" src="__STATIC__/wechat/img/none.jpg" /></a>'+
+							'<else />'+
+							'<a href="#"><img class="jump_detail" src="'+res.data[p].list[d].cart_drug_pic+'" /></a>'+
+							'</if>'+
+                            '</div>'+
+                            '<div class="shop-info-text">'+
+                            '<h4 class="jump_detail">'+res.data[p].list[d].cart_drug_name+'</h4>'+
+                            '<div class="shop-brief"><span>规格：'+res.data[p].list[d].cart_drug_spec+'</span></div>'+
+                            '<div class="shop-price">'+
+                            '<div class="shop-pices">￥<b class="price">'+res.data[p].list[d].cart_drug_price*0.01+'</b></div>'+
+                            '<div class="shop-arithmetic">'+
+                            '<a  class="minus" style="font-size: 33px;" cart-id='+res.data[p].list[d].id+'>-</a>'+
+                            '<span class="num">'+ res.data[p].list[d].cart_drug_num +'</span>'+
+                            '<a  class="plus" cart-id='+res.data[p].list[d].id+'>+</a>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>'+
+                            '</li>';
+					}
+                    cart_html += '</ul>'+
+							'<div class="clear"></div>'+
+							'</div>';
+				}
+				$('#shop').append(cart_html);
+            },'json');
+
+
+            //加数量
+            $(document).on("click",".plus",function(){
+                var cart_id = $(this).attr('cart-id');
+                var that    = $(this); //that通常用在异步处理后的回调函数里
+                $.post(cart_url+'onechange',
+                    {increment:1,cart_id:cart_id},
+                    function(res){
+                        if (res.data.status === 1){
+                            //添加成功
+                            var num=that.prev().html();     //获取商品初始数量
+                            that.prev().html(Number(num)+1);//此时已将数字直接写入标签内，是动作
+                        }
+                        if (res.data.status === 3){
+							alert('已经达到库存数量');
+                        }
+                        if (res.data.status === 5) {
+							alert('购物车数量已经大于库存，直接修改成当前库存数');
+                            that.prev().html(res.data.stock);
+                        }
+                    }, 'json');
+            });
+            //减数量
+			$(document).on('click','.minus',function(){
+				var cart_id = $(this).attr('cart-id');
+				var that    = $(this);
+				$.post(cart_url+'onechange',
+					{increment:0,cart_id:cart_id},
+					function (res) {
+						if (res.data.status === 2){
+						    //删减成功
+							var num = that.next().html();
+							that.next().html(Number(num)-1);
+						}
+						if (res.data.status === 4){
+						    //删减到数量为零，删除此条数据
+							that.parent().parent().parent().parent().remove();
+
+						}
+                    },'json');
+			});
+
+			//全选
+			$(document).on('click','#pharmacy',function(){
+                //判断是否已选中其他药店药品，若已选中，则弹出弹窗，取消本次全选。
+			    var click_pharmacy_id = $(this).val(); //获取点击的药店id
+				var res = checkTip(click_pharmacy_id);
+				if (res === false){
+                    //点选了两个不同药店的药品，弹出弹窗，并取消本次选中
+                    $("#iframe").toggle();
+                    $("#cuowuTs").toggle();
+                    $(this).prop('checked',false);
+                    return;
+				}
+			    // 选中/取消药店，就选中/取消它下面的所有药品
+			    if ($(this).prop("checked")){
+                    $(this).parent().parent().find("input[name=check_drug]").prop("checked",true);
+				}else{
+                    $(this).parent().parent().find("input[name=check_drug]").prop("checked",false);
+				}
+                PriceAndNum();
+
+			});
+
+			//单选
+			$(document).on('click','#drug',function(){
+			    if ($(this).prop("checked")){
+			        //点击选中时
+                    var click_pharmacy_id = $(this).next().val(); //获取点击的药店id
+                    var res = checkTip(click_pharmacy_id);
+                    if (res === false){
+                        //点选了两个不同药店的药品，弹出弹窗，并取消本次选中
+                        $("#iframe").toggle();
+                        $("#cuowuTs").toggle();
+                        $(this).prop("checked",false);
+					}
+				}
+                	PriceAndNum();
+                });
+
+			//选中药品删除
+			$(document).on('click','.coupons',function(){
+			    var str_cart = '';//选中的购物车id的字符串
+				var that     = $(this);
+				var check_pharmacy = $("input[name=check_pharmacy]:checked");
+				if (check_pharmacy.prop("checked")){
+				    //全选删除，弹出窗口
+                    $("#iframe1").show();
+                    $("#cuowuTs1").show();
+                    return;
+				}
+				//单选删除
+				 $("input[name=check_drug]:checked").each(function(){
+                     str_cart += $(this).val()+',';
+				 });
+
+				 $.post(cart_url+'emptycart',
+					 	{str_cart:str_cart},
+				 		function(res){
+				     		if (res.code !== "200"){
+				     		    alert('清空购物车失败');
+							}
+							var arr_cart_ids = str_cart.split(',');
+				     		for (var k in arr_cart_ids){
+				     		    // var checked_drug = $("input[name=check_drug]:checked");
+                                var checked_drug = that.parent().parent().find("input[name=check_drug]:checked");
+				     		    if (checked_drug.val() === arr_cart_ids[k]){
+				     		        checked_drug.parent().parent().remove();
+								}
+							}
+							var over_cart_id = that.parent().parent().find("#pharmacy_id").val();
+				     		if (over_cart_id  === undefined) {
+				     		    //当删除药品的药店下没有药品时，删除药店信息
+                                that.parent().parent().remove();
+							}
+						},'json');
+			});
+
+			//全选药品删除时弹出框--确定
+            $(document).on('click','#clean_sure',function () {
+                $("#iframe1").hide();
+                $("#cuowuTs1").hide();
+                var check_pharmacy = $("input[name=check_pharmacy]:checked");
+                var pharmacy_id = check_pharmacy.val();
+                $.post(cart_url+'emptycart',
+                	{pharmacy_id:pharmacy_id},
+                	function(res){
+                    	if (res.code !== "200"){
+                    	    alert('清空购物车失败');
+						}
+						$("input[name=check_pharmacy]:checked").parent().parent().remove();
+                	},'json');
+
+            });
+
+			//全选药品删除时弹出框--取消
+			$(document).on('click','#clean_cancel',function () {
+                $("#iframe1").hide();
+                $("#cuowuTs1").hide();
+            });
+
+			//结算按钮
+			$('#settlement').click(function(){
+			    var settlement_num = Number($('#sum_num').html());
+			    if (settlement_num === 0){
+					//进来这里说明没有需要结算的药品，直接返回。
+					return;
+				}
+                $("#tab_quyao").show();
+                $("#cover1").show();
+			});
+
+			//取药方式--确认
+			$(document).on('click','#order_sure',function () {
+				var choice = $("input[name=btn]:checked").val();//获取取药方式
+				if (choice === undefined){
+				    return;
+				}
+				var cart_ids = ''; //下订单的购物车id字符串
+				$("input[name=check_drug]:checked").each(function(){
+                    cart_ids += $(this).val() + ',';
+				});
+				if (cart_ids !== ''){ //截取字符串
+                    cart_ids = cart_ids.substr(0,cart_ids.length-1);
+				}
+
+				//清空下单的购物车————订单页面
+                var href_path = ''; //跳转路径
+                if (choice === 'setdrug'){
+                    //跳转到送药上门页面
+                    href_path = '/wechat/order?';
+                }else if(choice === 'getdrug'){
+                    //跳转到到店取药页面
+                    href_path = '/wechat/order/self_take?';
+                }
+                location.href = href_path +'cart_ids='+cart_ids;
+
+				//清空下单的购物车————购物车页面
+				// $.post(cart_url+'emptycart',
+				// 	   {str_cart:cart_ids},
+				// 		function (res) {
+				// 			if (res.code !== '200'){
+				// 			    alert('访问服务器失败');
+				// 			}
+                //             //根据取药方式跳转
+                //             var href_path = ''; //跳转路径
+                //             if (choice === 'setdrug'){
+                //                 //跳转到送药上门页面
+                //                 href_path = '/wechat/order?';
+                //             }else if(choice === 'getdrug'){
+                //                 //跳转到到店取药页面
+                //                 href_path = '/wechat/order/self_take?';
+                //             }
+                //             location.href = href_path +'cart_ids='+cart_ids;
+                //         },'json');
+            });
+
+			//取药方式--取消
+			$('#cover2').click(function(){
+                $("#tab_quyao").hide();
+                $("#cover1").hide();
+			});
+
+			//跳转到药品详情页
+			$(document).on('click','.jump_detail',function(){
+                var detail_id = $(this).parent().parent().parent().find('#detail_id').val(); //获取点中的药品的详情表id
+			    var pid       = $(this).parent().parent().parent().find('#pharmacy_id').val(); //获取点中的药品的详情表id
+				location.href = '/wechat/drug/index?' + 'id=' + detail_id + '&pid=' + pid;
+			});
+
+            //点击知道了，返回页面
+            $(".p3").click(function(){
+                $("#iframe").toggle();
+                $("#cuowuTs").toggle();
+            });
+
+
+			});
+
+		//显示总计金额和结算药品数量
+        function PriceAndNum(){
+            var sum_price = 0; //总计金额
+			var sum_num   = 0; //选中药品数量
+            $("input[name=check_drug]:checked").each(function(){
+                var checked_price = $(this).parent().parent().find('.price').html();//单价
+				var checked_num   = $(this).parent().parent().find('.num').html();//数量
+				checked_num = Number(checked_num);
+                //总计
+				sum_price += checked_price*checked_num;
+				//选中药品数量
+				 sum_num  += checked_num;
+			});
+            $('.shop-total-amount').html(sum_price);
+            $('#sum_num').html(sum_num);
+            //有药品结算时按钮绿色，没有药品结算按钮灰色
+            if (sum_num > 0){
+                $('.menuBtn1').addClass("settle_green");
+                $('.menuBtn1').removeClass("settle_gray");
+            }else{
+                $('.menuBtn1').addClass("settle_gray");
+                $('.menuBtn1').removeClass("settle_green");
+			}
+        }
+
+        /**不能同时选中两个药店的药品
+		 * click_pharmacy_id:当前点击所属的药店id
+		 * 返回值：true没有选择不同药店的药品；false选择了不同药店的药品
+         */
+		function checkTip(click_pharmacy_id){
+		    var res                 = true; //选中变量,默认是相同的
+			var checked_pharmacy_id = 0;    //已被选中的所属药店id
+			$("input[name=check_drug]:checked").each(function(){
+				checked_pharmacy_id = $(this).next().val();
+				if (click_pharmacy_id !== checked_pharmacy_id){
+                    res =  false;
+				}});
+			return res;
+		}
+
+	</script>
+	
+</html>

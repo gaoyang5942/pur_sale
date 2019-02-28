@@ -1,0 +1,34 @@
+{
+    "name": "THINKPHP/THINKPHP",
+    "description": "THINKPHP based on ThinkPHP 5.0 , it is a free and open source Content Management Framework(CMF)",
+    "type": "project",
+    "keywords": [
+    	"THINKPHP",
+        "framework",
+        "thinkphp",
+        "ORM"
+    ],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "THINKPHP",
+            "email": "lisong7889@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "topthink/think-helper":">=1.0",
+        "topthink/think-captcha": "^1.0",
+        "topthink/think-image": "^1.0",
+        "qiniu/php-sdk": "^7.1",
+        "ezyang/htmlpurifier": "^4.9",
+        "topthink/think-queue": "^1.1.4",
+        "overtrue/wechat": "~4.0",
+        "phpoffice/phpexcel": "^1.8"
+    },
+    "extra": {
+    },
+    "config": {
+        "vendor-dir":"think/vendor"
+    }
+}

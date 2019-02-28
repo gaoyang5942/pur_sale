@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单待退款</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/wodingdan.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+	</head>
+	<style type="text/css">
+		body {
+			background: #F0EFF5;
+		}
+	</style>
+
+	<body>
+		<header>
+			<div class="wodingdan_nav">
+				<ul class="wodingdan_nav_ul">
+					<li class="wodingdan_nav_li">
+						<a href="/wechat/order/all">全部</a>
+					</li>
+					<li class="wodingdan_nav_li">
+						<a href="/wechat/order/wait_pay">待付款</a>
+					</li>
+					<li class="wodingdan_nav_li">
+						<a href="/wechat/order/wait_shipping">待发货</a>
+					</li>
+					<li class="wodingdan_nav_li">
+						<a href="/wechat/order/wait_receive">待收货</a>
+					</li>
+					<li class="wodingdan_nav_li3">
+						<a href="javascript:void(0)" class="wodingdanA">退款/售后</a>
+						<span class="index_divImg_sap" style="display:none"></span>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<div class="container">
+			<div class="container_Div">
+
+			</div>
+		</div>
+
+		<footer class="footer">
+			<nav>
+				<ul>
+					<li>
+						<a href="/wechat/index/index">
+							<span class="foot_logoSpan"><img src="__STATIC__/wechat/img/foot_logofh.png"/></span>
+							<span class="foot_logoSpan">首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/cart/cart">
+							<span><img src="__STATIC__/wechat/img/foot_logoGh.png"/></span>
+							<span class="foot_logoSpan">购物車</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/index/medicine">
+							<span><img src="__STATIC__/wechat/img/geren_blue.png"/></span>
+							<span class="foot_logoSpanH">我的</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
+
+	</body>
+	<script type="text/javascript" src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/base.js"></script>
+	<script type="text/javascript">
+		var static = '__STATIC__';
+		var upload = '__UPLOAD__';
+
+		$(document).ready(function(){
+			$.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+                else if(data.code == '200')
+                {
+                	get_post_sale();
+                }
+            });
+
+            $(".p3").click(function() { //错误提示js
+				$("#iframe").hide();
+				$("#cuowuTs").hide();
+			});
+			$("#cuowuTs").click(function() { //错误提示js
+				$("#iframe").hide()
+				$("#cuowuTs").hide()
+			});
+		});
+
+		function get_post_sale()
+		{
+			$.ajax({
+				type: 'post',
+				url: '/api/order/get_orders_by_status',
+				data: {status: 'post_sale'},
+				dataType: 'json',
+				success: function(response){
+					if(response.code == 200)
+					{
+						var order_info = response.order_info;
+						if(order_info.length > 0)
+						{
+							$('.index_divImg_sap').show().text(order_info.length);
+
+							var order_html = order_list(order_info);
+							$('.container_Div').append(order_html);
+						}
+					}
+					else
+					{
+						$('.cuowu.iframe').show();
+						$('.cuowuTs').show();
+						$('.p2').text('获取订单信息失败');
+					}
+				},
+				error: function(error){
+					console.log(error);
+					$('.cuowu.iframe').show();
+					$('.cuowuTs').show();
+					$('.p2').text('获取订单信息失败');
+				}
+			});
+		}
+	</script>
+
+</html>

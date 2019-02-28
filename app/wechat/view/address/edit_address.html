@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>请添加选择地址</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/dizhiguanli.css" />
+	</head>
+	<style type="text/css">
+		#iframe{
+			display: none;
+		}
+		#cuowuTs{
+			display: none;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<div class="container_Div">
+				<form action="" method="post" class="tianjia_form">
+					<ul class="tianjia_formLi" data-id=''>
+						<li>
+							<span>姓名</span>
+							<input type="text" name="" class="name" id="" value="" placeholder="请填写收货人姓名(必填)" />
+						</li>
+						<li>
+							<span>手机</span>
+							<input type="text" name="" class="mobile" id="" value="" placeholder="请填写收货人手机号码(必填)" />
+						</li>
+					</ul>
+					<ul class="tianjia_formLi1">
+						<li class="tianjia_formLi1 map_touch">
+							<span>街道小区</span>
+							<img class="tianjia_formLi_img" src="__STATIC__/wechat/img/dingwei_img.png" />
+							<input class="tianjia_formLi1_inp address_text" type="text" name="" readonly="readonly"  id=""   value="" placeholder="点击选择" />
+						</li>
+						<li>
+							<span>门派楼层</span>
+							<input style="padding-left:0.7rem;" type="text" name="" class="address" id="" value="{$data.address_detailed}" placeholder="请输入详细地址门牌" />
+						</li>
+					</ul>
+				</form>
+				<!--增加按钮-->
+				<div class="diszhi_btn">
+					<a href="javascript:void(0)" class="diszhi_btn_a">保存并使用</a>
+				</div>
+				<!--增加按钮 end-->
+
+				<!--错误提示-->
+				<div class="cuowu iframe cuowu_div" id="iframe" style="display: none">
+					<p class="p1">无法操作</p>
+					<p class="p"><img src="__STATIC__/wechat/img/cuowu_tishi.png" style="width: 15%;" /></p>
+					<p class="p2"></p>
+					<p class="p3"><a href="#">知道了</a></p>
+				</div>
+				<div class="cuowuTs" id="cuowuTs" style="display: none"></div>
+				<!--错误提示 end-->
+			</div>
+		</div>
+		<footer>
+		<nav>
+			<ul>
+				<li>
+					<a href="javascript:void(0)" class="logoSpanH">
+						<span class="foot_logoSpan"><img src="__STATIC__/wechat/img/foot_logofh.png"/></span>
+						<span class="foot_logoSpan">首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" class="logoGh">
+						<span><img src="__STATIC__/wechat/img/foot_logoGh.png"/></span>
+						<span class="foot_logoSpan">购物車</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" class="logoRh">
+						<span><img src="__STATIC__/wechat/img/geren_blue.png" /></span>
+						<span class="foot_logoSpanH">我的</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</footer>
+	</body>
+	<script src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/base.js"></script>
+	<script type="text/javascript">
+		$(".p3").click(function() { //错误提示js
+			$("#iframe").toggle();
+			$("#cuowuTs").toggle();
+		});
+		$("#cuowuTs").click(function() { //错误提示js
+			$("#iframe").hide()
+			$("#cuowuTs").hide()
+		});
+		$(function() { //错误提示js
+			$("#iframe1").hide();
+			$("#cuowuTs1").hide();
+		});
+		var param = get_url_param();
+		var name = '';
+		var lat = '';
+		var lng = '';
+		if( param.id ){
+			$.ajax({
+				type:"POST",
+				url:"/api/address/edit_address",
+				data:{id: param.id},
+				dataType:"JSON",
+				async:false,
+				success:function(res){
+					var data  = res.data;
+					$('.name').val(data.address_name);
+					$('.mobile').val(data.address_tel);
+					name = data.address_name;
+					var add = data.address_detailed;
+					var address = add.split(" ");
+					lat =  data.address_lat;
+					lng =  data.address_lng;
+					$('.address_text').val(address[0]);
+					$('.address').val(address[1]);
+					$('.tianjia_formLi').attr('data-id',param.id);
+				}
+			})
+		}
+		$(document).ready(function () {
+            $.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+            })
+        })
+		$('.dizhi_guanli .dizhi_guanli_formA1').each(function() {
+			$(this).click(function() {
+				$(this).parent().parent().parent().remove('.dizhi_guanli');
+			})
+		})
+
+		$('.xuanzhe_div').click(function() {
+			$('.xuanzhe_divShow').toggle();
+		})
+		if(param.tit_input && param.tit_input != '|||' ){
+			var par_tit = param.tit_input.split("|");
+			name =  decodeURI(par_tit[0]);
+			var mobile = par_tit[1];
+			var address =  decodeURI(par_tit[2]);
+			var id = par_tit[3];
+		}
+		var p_id ='';
+		if( id ){
+			p_id = id;
+		}else{
+			p_id = param.id;
+		}
+		if(param.name){
+			var address_text = decodeURI(param.name);
+		}
+		if(param.latng){
+			var par_latng = param.latng.split(",");
+			lat = par_latng[0];
+			lng = par_latng[1];
+		}
+	    $('.map_touch').on('click',function(){ 
+	    	var url_r = window.location.host;
+	    	var clom_url = "http://"+url_r+"/wechat/address/edit_address?tit_input="+$('.name').val()+"|"+$('.mobile').val()+'|'+$('.address').val()+"|"+p_id;
+			//跳转到地图页面 
+			location.href='https://apis.map.qq.com/tools/locpicker?search=1&type=0&key=SDNBZ-7FCRU-K3WVX-4SB33-PKAXV-3FB7L&referer=myapp&backurl='+clom_url;
+		})
+		$('.diszhi_btn_a').on('click',function(){
+			var name = $('.name').val();
+			var mobile = $('.mobile').val();
+			var address = $('.address').val();
+			var address_text = $('.address_text').val();
+			var c_id = $('.tianjia_formLi').attr('data-id');
+			if(!name || name == ''){
+				alert('请填写姓名');
+				return false;
+			}
+			if (!mobile.match(/^[1][3,4,5,7,8,9][0-9]{9}$/)) { 
+				alert("手机号码格式不正确！"); 
+				return false;
+			}
+			if(address_text == '点击选择'){
+				alert('请选择街道小区哦');
+				return false;
+			}
+			if(!address || address == ''){
+				alert('请填写门牌楼号');
+				return false;
+			}
+			$.post('/api/address/edit_address_option',{'id':c_id,'address_lat':lat,'address_lng':lng,'address_name':name,'address_tel':mobile,'address_detailed':address_text+ ' '+address},function(data){
+				if(data.code == 200){
+					//接着做添加到首页重新加载
+					location.href='/wechat/address/index?lat='+lat+'&lng='+lng;
+				}else{
+					$("#iframe").show();
+					$("#cuowuTs").show();
+					$('.p2').text(data.msg);
+				}
+			})
+			$(document).on('click','.p3',function(){
+					$("#iframe").hide();
+					$("#cuowuTs").hide();
+				}) 
+		})
+		//添加地址
+		if (name) {
+			$('.name').val(name);
+		}
+		if (mobile) {
+			$('.mobile').val(mobile);
+		}
+
+		if (address_text) {
+			$('.address_text').val(address_text);
+		}
+		if (address) {
+			$('.address').val(address);
+		}
+		if(p_id){
+			$('.tianjia_formLi').attr('data-id',p_id);
+		}
+		$('.logoSpanH').on('click',function(){
+            //点击后跳转到收获地址栏
+            location.href='/wechat/index/index';
+        })
+        $('.logoGh').on('click',function(){
+            //点击后跳转到购物栏
+            location.href='/wechat/Cart/cart';
+        })
+        $('.logoRh').on('click',function(){
+            //点击后跳转到收获地址栏
+            location.href='/wechat/index/medicine';
+        })
+	</script>
+
+</html>

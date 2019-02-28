@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/wodingdan.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+	</head>
+
+	<body>
+		<header>
+			<div class="dingdxq_head">
+				<img src="__STATIC__/wechat/img/dingwei_logo.png" />
+				<div class="dingdxq_head_div">
+					<p>
+						<span class="dingdxq_head_name"></span>
+						<span class="dingdxq_head_num"></span>
+					</p>
+					<a href="javascript:void(0)" id="addr_detail">配送地址：</a>
+				</div>
+			</div>
+		</header>
+		<div class="container_xq">
+			<div class="container_Div">
+
+				<div class="ywcheng">
+					<div class="ywcheng_h">
+						<a href="#" class="ywcheng_h_a" id="pharmacy">
+							<img src="__STATIC__/wechat/img/yaodian_img.png" />
+							<span id="pharmacy_name"></span>
+						</a>
+					</div>
+					<div class="ywcheng_mian">
+						<div class="ywcheng_mian_sp">
+							
+						</div>
+					</div>
+
+				</div>
+				<div class="dingdxq_mian_div">
+					<ul class="dingdxq_mian_div_ul">
+						<li>
+							<span class="dingdxq_mian_div_span">商品总价 : </span>
+							<span class="dingdxq_mian_div_span2" id="drugorder_total_fee">￥</span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">优惠金额 : </span>
+							<span class="dingdxq_mian_div_span2" id="drugorder_pre_fee">￥</span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">医保支付 : </span>
+							<span class="dingdxq_mian_div_span2" id="drugorder_medical_fee">￥</span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">自费支付 : </span>
+							<span class="dingdxq_mian_div_span2" id="drugorder_self_fee">￥</span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">配送费 : </span>
+							<span class="dingdxq_mian_div_span2" id="drugorder_transport_fee">￥</span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">本次积分 : </span>
+							<span class="dingdxq_mian_div_span2" id="scoreinfo"></span>
+						</li>
+						<li>
+							<span class="dingdxq_mian_div_span">订单总价 : </span>
+							<span class="dingdxq_mian_div_span3" id="drugorder_amount_payment">￥</span>
+						</li>
+					</ul>
+				</div>
+				<div class="peisong">
+					<div class="ywcheng_h">
+						<a href="#" class="ywcheng_h_a">
+							<span>订单详情</span>
+						</a>
+					</div>
+					<div class="dingdxq_mian_div">
+						<ul class="dingdxq_mian_div_ul">
+							<li>
+								<span class="dingdxq_bh_span">订单编号 : </span>
+								<span class="" id="drugorder_number"></span>
+							</li>
+							<li>
+								<span class="dingdxq_bh_span">下单时间 : </span>
+								<span class="" id="drugorder_create_time"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="clear"></div>
+
+			</div>
+		</div>
+		<!--错误提示-->
+		<div class="cuowu iframe" style="display: none">
+			<p class="p1">无法操作</p>
+			<p class="p"><img src="__STATIC__/wechat/img/cuowu_tishi.png" style="width: 15%;"/></p>
+			<p class="p2"></p>
+			<p class="p3"><a href="javascript:void(0)" onclick="location.href = sessionStorage.getItem('last_page')">知道了</a></p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs" style="display: none"></div>
+		<!--错误提示 end-->
+		<footer class="footer">
+			<nav>
+				<ul>
+					<li>
+						<a href="/wechat">
+							<span class="foot_logoSpan"><img src="__STATIC__/wechat/img/foot_logofh.png"/></span>
+							<span class="foot_logoSpan">首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/cart/cart">
+							<span><img src="__STATIC__/wechat/img/foot_logoGh.png"/></span>
+							<span class="foot_logoSpan">购物車</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/index/medicine">
+							<span><img src="__STATIC__/wechat/img/geren_blue.png"/></span>
+							<span class="foot_logoSpanH">我的</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
+
+	</body>
+	<script type="text/javascript" src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/base.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+                else if(data.code == '200')
+                {
+                	var param = get_url_param();
+					var order_no = param.order_no;
+
+					$.ajax({
+						type: 'post',
+						url: '/api/order/detail_info',
+						data: {order_no: order_no},
+						success: function(response){
+							console.log(response);
+							if(response.code == 200)
+							{
+								var order_detail = response.order_detail;
+								var address = order_detail.address;
+								if(order_detail.drugorder_order_type != 2){
+									$('.dingdxq_head_name').text(address.address_name);
+									$('.dingdxq_head_num').text(address.address_tel);
+									$('#addr_detail').append(address.address_detailed);
+								}else{
+									$('.dingdxq_head').remove();
+								}
+								
+
+								$('#pharmacy').attr('href', '/wechat/Pharmacy?f_id='+order_detail.pharmacy.id);
+								$('#pharmacy_name').text(order_detail.pharmacy.pharmacy_name);
+
+								// <ul class="dingdxq_mian_sp_ul1">
+								// 	<li class="ywcheng_mian_ulImg1">
+								// 		<img src="__STATIC__/wechat/img/ef0591ef1e7e8d5f1ffbc98ba859d59.png" />
+								// 	</li>
+								// 	<li class="ywcheng_mian_ulText">
+								// 		<p class="ywcheng_mian_p1">藿香正气水</p>
+								// 		<p class="gybgg">该药品规格</p>
+								// 		<p class="ywcheng_mian_p">
+								// 			<span class="ywcheng_mian_num1">￥12.00</span>
+								// 			<span class="ywcheng_mian_num">x1</span>
+								// 		</p>
+								// 	</li>
+								// </ul>
+
+								var drug_list = '';
+								for(var drug of order_detail.orderproducts)
+								{
+									drug_list += '<ul class="dingdxq_mian_sp_ul1">';
+									drug_list += '<li class="ywcheng_mian_ulImg1">';
+									if(drug.detail.drug_detailed_img)
+									{
+										drug_list += '<img src="__UPLOAD__/'+drug.detail.drug_detailed_img+'" />';
+									}
+									else
+									{
+										drug_list += '<img src="__STATIC__/wechat/img/none.jpg"';
+									}
+									drug_list += '</li>';
+									drug_list += '<li class="ywcheng_mian_ulText">';
+									drug_list += '<p class="ywcheng_mian_p1">'+drug.detail.drug_detailed_name+'</p>';
+									drug_list += '<p class="gybgg">'+drug.detail.drug_detailed_specifications+'</p>';
+									drug_list += '<p class="ywcheng_mian_p">';
+									drug_list += '<span class="ywcheng_mian_num1">￥'+drug.drugstore_pre_price/100+'</span>';
+									drug_list += '<span class="ywcheng_mian_num">x'+drug.drugstore_num+'</span>';
+									drug_list += '</p>';
+									drug_list += '</li>';
+									drug_list += '</ul>';
+								}
+								$('.ywcheng_mian_sp').append(drug_list);
+
+								$('#drugorder_total_fee').append((order_detail.drugorder_total_fee/100).toFixed(2));
+								$('#drugorder_pre_fee').append((order_detail.drugorder_pre_fee/100).toFixed(2));
+								$('#drugorder_medical_fee').append((order_detail.drugorder_medical_fee/100).toFixed(2));
+								$('#drugorder_self_fee').append((order_detail.drugorder_self_fee/100).toFixed(2));
+								$('#drugorder_transport_fee').append((order_detail.drugorder_transport_fee/100).toFixed(2));
+								$('#scoreinfo').append(scoreinfo.sorce ? scoreinfo.sorce : Math.floor(order_detail.drugorder_amount_payment));
+								$('#drugorder_amount_payment').append((order_detail.drugorder_amount_payment/100).toFixed(2));
+
+								$('#drugorder_number').append(order_detail.drugorder_number);
+								$('#drugorder_create_time').append(order_detail.drugorder_create_time);
+							}
+							else
+							{
+								$('.cuowu.iframe').show();
+								$('.cuowuTs').show();
+								$('.p2').text(response.msg);
+							}
+						},
+						error: function(error){
+							console.log(error);
+							$('.cuowu.iframe').show();
+							$('.cuowuTs').show();
+							$('.p2').text('获取订单详情失败');
+						}
+					});
+                }
+            });
+
+			$(".p3").click(function() { //错误提示js
+				$("#iframe").hide();
+				$("#cuowuTs").hide();
+			});
+			$("#cuowuTs").click(function() { //错误提示js
+				$("#iframe").hide()
+				$("#cuowuTs").hide()
+			});
+		});
+		
+	</script>
+</html>

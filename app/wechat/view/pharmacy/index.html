@@ -1,0 +1,831 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>药店首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/yaodian_index.css" />
+		<link type="text/css" rel="stylesheet" href="__STATIC__/wechat/css/module.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/stylepc.css" />
+		<style type="text/css">
+			.shopPrice .settle_green {
+				display: inline-block;
+				width: 80px;
+				height: 50px;
+				font-size: 17px;
+				text-align: center;
+				line-height: 50px;
+				background: #09BA07;
+				color: white;
+				float: right;
+			}
+
+			.shopPrice .settle_gray {
+				display: inline-block;
+				width: 80px;
+				height: 50px;
+				font-size: 17px;
+				text-align: center;
+				line-height: 50px;
+				background: #999;
+				color: white;
+				float: right;
+			}
+
+			.goods_list ul li {
+				background-color: #FFF;
+				border-bottom: 1px solid #CCC;
+				height: 260px;
+				padding: 40px;
+			}
+			
+			.shop-info .shop-info-text .shop-arithmetic {
+				width: 93px;
+			}
+			
+			.goods_img {
+				float: left;
+				border: 1px solid #CCC;
+				margin-right: 20px;
+				width: 180px;
+				height: 180px;
+			}
+			.yaodian_body1 {
+				height: 900px;
+				overflow: hidden;
+				overflow-y: auto;
+				position: relative;
+			}
+			
+			.goods_list .num span {
+				padding: 0 30px;
+			}
+			
+			.form_searchD {
+				position: fixed;
+				top: 0;
+				z-index: 333;
+				width: 100%;
+				background: #EFEFF4;
+			}
+			
+			.container_Divf {
+				background: #EFEFF4;
+				position: fixed;
+				width: 100%;
+				top: 48px;
+				z-index: 10;
+			}
+			
+			.yaodian_body {
+				min-height: 800px;
+				overflow: hidden;
+				overflow-y: auto;
+				position: relative;
+			}
+			.container,
+			.container_Div {
+				height: 100%;
+			}
+			.container1 .menu ul .yaodian_li {
+				border: 0;
+			}
+		</style>
+	</head>
+
+	<body class="yaodian_body">
+		<div class="container">
+			<div class="container_Div">
+				<div class="" style="padding: 1.5rem 0;"></div>
+				<div class="form_searchD">
+					<div class="yaodian_form_search1">
+						<input type="search" placeholder="请输入药品关键字" class="yaodian_index_search" />
+						<a class="search">
+							<img src="__STATIC__/wechat/img/sech_img.png" style="width: 25px;height: 25px;"/>
+						</a>
+					</div>	
+				</div>
+				<div class="yaodian_mainDiv">
+					<div class="yaodian_mainDiv_index">
+						<div class="yaodian_mainDiv_img"></div><!--药店图片-->
+						<div class="yaodian_mainDiv_yaodian">
+							<div class="yaodian_mainDiv1">
+								<span class="yaodian_name"><!--xx大药房--></span>
+								<a href="#" class="yaodian_mainDiv_a"><img src="__STATIC__/wechat/img/yaodian_pho.png"/></a>
+							</div>
+							<div class="yaodian_mainDiv2"><!--配送时间：08：00—17：00--></div>
+							<div class="yaodian_index">
+								<span class="yaodian_index_img ismed"><img src="__STATIC__/wechat/img/yiyao1_img.png"/><span>医保定点</span></span>
+								<span class="yaodian_index_img isdoor"><img src="__STATIC__/wechat/img/yaodian_char.png" style="margin-top: 0.5rem;"/><span>送药上门</span></span>
+								<span class="yaodian_index_img1 gothere" data-lat='' data-lng='' data-name=''><img src="__STATIC__/wechat/img/dingwei_blue.png"/><span>到这去</span></span>
+								<p id="active"><img src="__STATIC__/wechat/img/ze_img.png" style="width: 20px;height: 20px;" /><span>折扣药品<b id="val">N</b>折起</span></p>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="box">
+						<img src="__STATIC__/wechat/img/sheng_img.png" />
+						<div class="hezi">
+							<h1 class="chaochu"><!--世界本没有路，世界本没有路，走的人多了，就成了路1--></h1>
+							<!--<h1>世界本没有路，走的人多了，就成了路2</h1>
+							<h1>世界本没有路，走的人多了，就成了路3</h1>
+							<h1>世界本没有路，走的人多了，就成了路4</h1>-->
+						</div>
+
+					</div>
+					<div class="container1" id="container1">
+						<div class="menu">
+							<h3 style="background: white;">全部药品</h3>
+							<ul class="ulmenu1">
+								<!--<li>
+									<a class="selected" href="#tab1">基础问题</a>
+								</li>-->
+								<!--<li class="yaodian_li">
+									<a href="#"></a>
+								</li>-->
+							</ul>
+						</div>
+						<div class="content">
+							<h3 class="yaodian_index_h3">全部药品</h3>
+							<div class="menu1 menu_tab">
+								<!--<div id="tab1" class="tab active">
+									<div class="yaodian_indexDIV">
+										<ul class="yaodian_indexDIV_ul">
+											<li class="yaodian_indexDIV_li">
+												<div class="yaodian_indexDIV_liDiv">
+													<div class="yaodian_indexDIV_img">
+														<img src="__STATIC__/wechat/img/ef0591ef1e7e8d5f1ffbc98ba859d59.png" style=""/>
+													</div>
+													<div class="yaodian_indexDIV_liDiv1">
+														<p class="yaodian_indexDIV_liH">藿香正气水1</p>
+														<p class="yaodian_indexDIV_liS">该药品规格</p>
+														<p class="yaodian_indexDIV_liS">黑龙江xx制药公司</p>
+														<div class="yaodian_indexDIV_liDiv2">
+															<span class="yaodian_indexDIV_Span">￥ 12.00</span>
+															<del class="yaodian_indexDIV_Del">￥ 22.00</del>
+															<span class="yaodian_indexDIV_Spa">无库存药</span>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li class="yaodian_indexDIV_li">
+												<div class="yaodian_indexDIV_liDiv">
+													<div class="yaodian_indexDIV_img">
+														<img src="__STATIC__/wechat/img/ef0591ef1e7e8d5f1ffbc98ba859d59.png" style=""/>
+													</div>
+													<div class="yaodian_indexDIV_liDiv1">
+														<p class="yaodian_indexDIV_liH">藿香正气水1</p>
+														<p class="yaodian_indexDIV_liS">该药品规格</p>
+														<p class="yaodian_indexDIV_liS">黑龙江xx制药公司</p>
+														<div class="yaodian_indexDIV_liDiv2">
+															<span class="yaodian_indexDIV_Span">￥ 12.00</span>
+															<del class="yaodian_indexDIV_Del">￥ 22.00</del>
+															<span class="yaodian_indexDIV_Spa">无库存药</span>
+														</div>
+													</div>
+												</div>
+											</li>
+
+											<li class="yaodian_indexDIV_li" style="height: 50px;border: 0;"></li>
+										</ul>
+									</div>
+								</div>-->
+
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+
+			</div>
+			<!--错误提示-->
+			<div class="cuowu iframe cuowu_div" id="iframe" style="display: none">
+				<p class="p1">无法操作</p>
+				<p class="p"><img src="__STATIC__/wechat/img/cuowu_tishi.png" style="width: 15%;" /></p>
+				<p class="p2">无法操作</p>
+				<p class="p3">
+					<a href="#">知道了</a>
+				</p>
+			</div>
+			<div class="cuowuTs" id="cuowuTs"></div>
+			<!--错误提示 end-->
+		</div>
+		<!--取药方式-->
+		<div id="tab_quyao" class="pop1" style="display: none">
+			<div class="tab1_div">
+				<span>请选择取药方式</span>
+				<img src="__STATIC__/wechat/img/dingwei_shanchu.png" id="cover2" />
+			</div>
+			<form action="" method="post" id="way">
+				<div>
+					<input type="radio" class="tab1_div1" name="btn" id="btn1" value="give"><label for="btn1">送药上门</label>
+				</div>
+				<div>
+					<input type="radio" class="tab1_div1" name="btn" id="btn2" value="get"><label for="btn2">到店取药</label>
+				</div>
+				<div>
+					<a class="qingkong1" onclick="getWay()">确认</a>
+				</div>
+			</form>
+		</div>
+		<div class="cover1" id="cover1"></div>
+		<!--取药方式 end-->
+		<!--已选商品-->
+		<div class="shopping" style="width:100%;position: fixed;z-index:99;bottom:0;margin:0;padding: 0;">
+			<div class="shop-group-item pop" id="tab">
+				<div class="shop-name">
+					<input type="checkbox" class="check goods-check shopCheck" checked id="checkAll">
+					<h4><a href="#" id="name"></a></h4>
+					<div class="coupons"><img src="__STATIC__/wechat/img/yaopin_shanchuH.png" style="width: 27%;" />清除</div>
+				</div>
+				<ul id="cart">
+				</ul>
+			</div>
+
+			<div class="shopPrice abs-bottom" style="display: block;">
+				<div class="footer_divImg" id="menuBtn4">
+					<img src="__STATIC__/wechat/img/foot_yao.png" style="width: 35px;height: 35px;"/>
+					<span class="footer_divImg_sap" style="color: white;" id="sum_count"></span>
+				</div>
+				<div class="footer_divJs">
+					<span class="footer_divJspan">
+						<span style="font-size: 16px;color: #000;">合计 :￥</span>
+					<span class="shop-total-amount ShopTotal" style="color: red;" id="price"></span>
+					</span>
+					<a href="#" class="menuBtn1 settle_gray" style="width:87px;">去结算(<span class="totalNum" style="color: white;" id="counts"></span>)</a>
+				</div>
+			</div>
+		</div>
+		<div class="cover" id="cover"></div>
+		<!--已选商品 end-->
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/shopping.js"></script>
+	<script src="__STATIC__/wechat/js/jquery-latest.js" type="text/javascript" charset="utf-8"></script>
+	<script src="__STATIC__/wechat/js/pc.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(document).ready(function() {
+		    //滚动页面添加定位
+			$(window).scroll(function() {
+				var scroll_top = $(window).scrollTop();
+				if(scroll_top >= 120) {
+					$(".container1").addClass("container_Divf");
+				} else {
+					$(".container1").removeClass("container_Divf");
+				}
+			});
+			//购物车0商品时隐藏红点
+            var redtap = Number($('#sum_count').html());
+            if (redtap === 0){
+                $('#sum_count').hide();
+            }
+		});
+
+		$(function() { //错误提示js
+			$("#iframe").hide();
+			$("#cuowuTs").hide();
+		});
+		$(".p3").click(function() { //错误提示js
+			$("#iframe").toggle();
+			$("#cuowuTs").toggle();
+		});
+		$("#cuowuTs").click(function() { //错误提示js
+			$("#iframe").hide();
+			$("#cuowuTs").hide();
+		});
+		//		$(function(){//上下轮播
+		//				var num=0;
+		//				
+		//				setInterval(function(){
+		//					num++;
+		//					if(num==4){
+		//						$('.hezi').css({'top':'0px'});
+		//						
+		//						num=1;
+		//					}
+		//					$('.hezi').stop().animate({'top':-50*num+'px'},500)
+		//				},2500)
+		//			});
+		var that = $(".shop-info-text").length;
+		$('.menuBtn1 .totalNum').text(that); //获取件数
+
+		$(".check").each(function() { //删除选中checked
+			$(this).click(function() {
+				var checkedTrue = $(this).prop('checked');
+				if(checkedTrue == true) {
+					$('.coupons').each(function() {
+						$(this).click(function() {
+							$("input[name=inputName]:checked").parents('li').remove()
+						})
+					})
+					var num = 0;
+					$('.shop').each(function(){
+						num += parseInt($(this).html());
+					});
+					$('#sum_count').html(num);
+					var count = $('#cart li').length;
+					$('#counts').html(count);
+					$("input[name='inputName[]']").each(function(){
+						$(this).data('flag','y');
+					});
+				}else{
+					$('#sum_count').html(0);
+					$('#counts').html(0);
+					$("input[name='inputName[]']").each(function(){
+						$(this).data('flag','n');
+					});
+				}
+			})
+		});
+		$(function() {
+			$("#tab").hide();
+			$("#cover").hide();
+		})
+		$("#menuBtn").click(function() {
+			$("#tab").toggle();
+			$("#cover").toggle();
+		})
+		$("#cover").click(function() {
+			$("#tab").hide()
+			$("#cover").hide()
+		});
+		$(".qingkong").click(function() {
+			$(".goods_list1_ulLi").remove();
+			$("#cover").hide();
+			$(".yaodian_yixuan").hide();
+		});
+
+		$(function() {
+			$("#tab_quyao").hide();
+			$("#cover1").hide();
+		});
+		$(".menuBtn1").click(function() {
+			var count = $('#counts').html();
+			if (count > 0) {
+				$("#tab_quyao").toggle();
+				$("#cover1").toggle();
+			}
+		});
+
+		$("#menuBtn4").click(function() {
+            var sum_count = $("#sum_count").html();
+            if (sum_count > 0){
+                $("#tab").toggle();
+                $("#cover").toggle();
+            }
+		});
+		$("#menuBtn2").click(function() {
+			$("#tab").toggle();
+			$("#cover").toggle();
+		});
+		$("#cover1").click(function() {
+			$("#tab_quyao").hide();
+			$("#cover1").hide();
+		});
+		$("#cover2").click(function() {
+			$("#tab_quyao").hide();
+			$("#cover1").hide()
+		});
+		$(".qingkong1").click(function() {
+			//		$(".yaodian_yixuan_DivLi1").remove();
+		});
+
+		//全部药品显示隐藏
+		//		$('.yaodian_mainDiv_li').click(function() {
+		//			$('.yaodian_mainDiv_Uli').toggle();
+		//		});
+	</script>
+
+	<script>
+		var appendMenu = function (data) {
+			var list = data.data;
+			var menu = '';
+			for (var key in list){
+				menu += '<li class="menus" data-id="tab'+key+'">' +
+                    		'<a style="display:block;overflow:hidden;height:35px;display:block;width:100%;">'+list[key].cate_name+'</a>' +
+						'</li>';
+			}
+			menu += '<li class="yaodian_li"></li>';
+			$('.ulmenu1').html(menu);
+			$(".ulmenu1 li").first().find('a').css({"background":"#459FEB","color":"white"});
+        };
+
+		var appendList = function (data) {
+            var list = data.data;
+            var info = '';
+            for (var key in list){
+                var active = '';
+                if(key == 0){
+                    active = 'active';
+				}
+				info +=
+					'<div id="tab'+(key)+'" class="tab '+active+'">' +
+                    	'<div class="yaodian_indexDIV">' +
+                    		'<ul class="yaodian_indexDIV_ul">';
+				for (var k in list[key].drugs){
+					if (list[key].drugs[k].drug_detailed_img == '' || list[key].drugs[k].drug_detailed_img == null) {
+						var img = '<img src="__STATIC__/wechat/img/none.jpg"/>\n'
+					}else{
+						var img = '<img src="http://'+window.location.host+'/upload/'+list[key].drugs[k].drug_detailed_img+'"/>\n'
+					}
+					info +=
+						'<li class="yaodian_indexDIV_li">' +
+							
+							'<div class="yaodian_indexDIV_liDiv">' +
+								'<a href="/wechat/drug/index.html?id='+list[key].drugs[k].did+'&pid='+list[key].drugs[k].sid+'">' + 
+								'<div class="yaodian_indexDIV_img">' +
+									img +
+								'</div></a>' +
+								'<div class="yaodian_indexDIV_liDiv1">' +
+								'<a href="/wechat/drug/index.html?id='+list[key].drugs[k].did+'&pid='+list[key].drugs[k].sid+'">' + 
+									'<p class="yaodian_indexDIV_liH">'+list[key].drugs[k].drug_store_name+'</p></a>' +
+									'<p class="yaodian_indexDIV_liS">'+list[key].drugs[k].drug_detailed_specifications+'</p>' +
+									'<p class="yaodian_indexDIV_liS">'+list[key].drugs[k].drug_store_manufactor+'</p>' +
+									'<div class="yaodian_indexDIV_liDiv2">' +
+										'<span class="yaodian_indexDIV_Span">￥ <span class="price">'+list[key].drugs[k].drug_store_activity_price/100+'</span>' +
+										'<del class="yaodian_indexDIV_Del">￥ '+list[key].drugs[k].drug_store_retail_price/100+'</del>';
+					if(list[key].drugs[k].drug_store_num != '0'){
+						info +=
+							'<div class="shop-arithmetic">'+
+								'<a href="javascript:;" class="minus jian" onclick=addcart(this,"'+list[key].drugs[k].sid+'","'+list[key].drugs[k].id+'","'+list[key].drugs[k].drug_store_name+'","'+list[key].drugs[k].drug_detailed_specifications+'","'+list[key].drugs[k].drug_detailed_img+'","'+list[key].drugs[k].drug_store_activity_price+'","0")>-</a>'+
+								'<span class="num" id="'+list[key].drugs[k].id+'">'+list[key].drugs[k].count+'</span>'+
+								'<a href="javascript:;" class="plus jia" data-id="'+list[key].drugs[k].id+'" onclick=addcart(this,"'+list[key].drugs[k].sid+'","'+list[key].drugs[k].id+'","'+list[key].drugs[k].drug_store_name+'","'+list[key].drugs[k].drug_detailed_specifications+'","'+list[key].drugs[k].drug_detailed_img+'","'+list[key].drugs[k].drug_store_activity_price+'","1")>+</a>'+
+							'</div>'
+					}else{
+						info += '<span class="yaodian_indexDIV_Spa">无库存药</span>';
+					}
+					info += '</div></div></div></li>';
+
+				}
+                info += '</ul></div></div>'
+            }
+			$('.menu_tab').html(info);
+        };
+
+        //加入购物车
+		function addcart(eles,pid,did,name,spec,img,pri,increment){
+			var flags  = $(eles).data('flags');
+			$(eles).data('flags','N');
+			var ele = $(eles);
+			var anum = ele.prev().html();
+			var rnum = ele.next().html();
+			var num1= parseInt(anum)+parseInt(1);
+			if (flags != 'N') {	
+				var data = {'pid':pid,'did':did,'cart_drug_name':name,'cart_drug_spec':spec,'cart_drug_pic':img,'cart_drug_price':pri,'increment':increment};
+				$.post("{:url('api/Cart/addcart')}",data, function(result){
+					if (increment == '1') {
+			            $.post("{:url('api/Pharmacy/num')}",{'id' : did}, function(results){
+			            	if (num1 <= parseInt(results.data)) {
+			            		ele.prev().html(num1);
+			            	}
+			            });
+					}else{
+			            if (rnum != 0) {
+			            	ele.next().html(parseInt(rnum)-1);
+			            }
+					}
+					getCart();
+				});
+				setTimeout(function(){
+					$(eles).data('flags','Y');
+				},1000);
+			}
+		}
+		
+		var getList = function(store_id){
+            $.get('/api/pharmacy/druglist',{store_id:store_id},function (res) {
+                appendMenu(res);
+                appendList(res);
+            },'json')
+		};
+		var getInfo = function(store_id){
+            $.get('/api/pharmacy/info',{store_id:store_id},function (res) {
+            	$('#btn1').attr('checked','checked');
+            	if (res.data.pharmacy_store_pic == '' || res.data.pharmacy_store_pic == null) {
+            		var img = '<img src="__STATIC__/wechat/img/none.jpg"/>';
+            	}else{
+            		var img = '<img src="http://'+window.location.host+'/upload/'+res.data.pharmacy_store_pic+'"/>';
+            	}
+            	$('.yaodian_mainDiv_img').html(img);
+            	$('#name').html(res.data.pharmacy_name);
+                $('.yaodian_name').html(res.data.pharmacy_name);
+				$('.yaodian_mainDiv2').html('配送时间：'+ res.data.start_store_time +' - '+res.data.end_store_time);
+				$('.yaodian_mainDiv_a').attr('href','tel:'+res.data.pharmacy_phone+'');
+				$('.gothere').attr('data-lat',res.data.pharmacy_lat);
+				$('.gothere').attr('data-lng',res.data.pharmacy_lng);
+				$('.gothere').attr('data-name',res.data.pharmacy_name);
+				if (res.data.pharmacy_ismed == '1') {
+					$('.ismed').show();
+				}else{
+					$('.ismed').hide();
+				}
+				if (res.data.pharmacy_isdoor == '1') {
+					$('.isdoor').show();
+				}else{
+					$('.isdoor').hide();
+				}
+
+				if (res.data.val <= 0) {
+					$('#active').hide();
+				}else{
+					$('#val').html(res.data.val);
+				}
+            },'json')
+		};
+        var getRadio = function(store_id){
+            $.get('/api/pharmacy/radio',{store_id:store_id},function (res) {
+            	var data = res.data;
+            	var html = '';
+            	for(var x in data){
+            		html += '<h1 class="chaochu">'+data[x].content+'</h1>'
+            	}
+                $('.hezi').html(html);
+				// var num=0;
+				// setInterval(function(){
+				// 	num++;
+				// 	if(num==4){
+				// 		$('.hezi').css({'top':'0px'});
+				// 		num=1;
+				// 	}
+				// 	$('.hezi').stop().animate({'top':-35*num+'px'},500)
+				// },2500)
+            },'json')
+        };
+        $(document).ready(function(){
+			$.post("/api/wechat/get_user_info",function(data){
+	            var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+	            if(data.code == '200'){
+			        getCart();
+					getList("<?php echo $_GET['f_id'] ?>");
+					getInfo("<?php echo $_GET['f_id'] ?>");
+					getRadio("<?php echo $_GET['f_id'] ?>");
+				}
+			});
+		});
+		
+        $(document).on('click', '.menus', function(){
+        	var id = $(this).data("id");
+        	$('#'+id).addClass('active').siblings().removeClass('active');
+        	$('.menus a').css({'background':'','color':''});
+        	$(this).find('a').css({"background":"#459FEB","color":"white"});
+        })
+
+	    function getCart(){
+	    	var pid = "<?php echo $_GET['f_id'] ?>";
+	        $.get("{:url('api/Cart/getcart')}",{'pid' : pid}, function(results){
+                $('#sum_count').html(results['data'].sum_count);
+                //购物车有商品时显示红点
+				var redtap = results['data'].sum_count;
+                if (redtap > 0){
+                    document.getElementById("sum_count").style.display = "";
+                }else {
+                    $('#sum_count').hide();
+                }
+				var carts = results['data']['carts'];
+				var html  = '';
+				var price = 0;
+				var sum   = 0;
+				for(var x in carts){
+					html += '<li><div class="shop-info" style="height: auto;"><input type="checkbox" name="inputName[]" class="check goods-check goodsCheck" value="'+carts[x].id+'" checked data-flag="y" onclick="re(this,'+carts[x].cart_drug_price+')"><div class="shop-info-text" style="margin-left: 2rem;"><h4 style="display: inline-block;width: 34%;">'+carts[x].cart_drug_name+'</h4><div class="shop-pices">￥<b class="price">'+carts[x].cart_drug_price/100+'</b></div><div class="shop-price" style="display: inline-block;float: right;"><div class="shop-arithmetic" style="border: 0;"><a onclick="reduce(this,'+carts[x].id+','+carts[x].cart_drug_price+','+carts[x].did+')" class="minus" style="width: 30px;height: 20px;background: #fff;text-align: center;color:#CDCDCD;line-height:20px;border: 1px solid #CDCDCD;border-top-left-radius: 7px;border-bottom-left-radius: 7px;">-</a><span class="num shop">'+carts[x].cart_drug_num+'</span><a onclick="add(this,'+carts[x].id+','+carts[x].cart_drug_price+','+carts[x].did+')" class="plus" style="width: 30px;height: 20px;background: #57AAEE;text-align: center;color: white;line-height: 20px;border: 1px solid #57AAEE;border-top-right-radius: 7px;border-bottom-right-radius: 7px;">+</a></div></div></div></div></li>';
+					price += numDiv(carts[x].cart_drug_num,carts[x].cart_drug_price);
+					sum += 1;
+				}
+				$('#cart').html(html);
+				$('#price').html((price/100).toFixed(2));
+				$('#counts').html(sum);
+                //有药品结算时按钮绿色，没有药品结算按钮灰色
+                if (sum > 0){
+                    $('.menuBtn1').addClass("settle_green");
+                    $('.menuBtn1').removeClass("settle_gray");
+                }else{
+                    $('.menuBtn1').addClass("settle_gray");
+                    $('.menuBtn1').removeClass("settle_green");
+                }
+			});
+	    }
+
+		//购买数量-1
+		function reduce(ele,id,pri,did){
+			//购物车内是否选中标识
+			var flag  = $(ele).parents('.shop-info').find('input').data('flag');
+			var num   = $('#sum_count').html();
+			var price = numDiv($('#price').html(),100);
+			var flags  = $(ele).data('flags');
+			$(ele).data('flags','N');
+			if (flags != 'N') {	
+				$.post("{:url('api/Cart/onechange')}",{'cart_id' : id, 'increment' : '0'}, function(result){
+					var elem = $(ele).next();
+					if (elem.html() == '1') {
+						$.post("{:url('api/Cart/emptycart')}",{'str_cart' : id}, function(result){});
+						$(ele).parents('li').remove();
+						$('#'+did).html(0);
+					}else{
+						elem.html(elem.html()-1);
+						$('#'+did).html(parseInt($('#'+did).html())-1);
+						$('#'+did+'a').html(parseInt($('#'+did+'a').html())-1);
+					}
+					if (flag == 'y') {
+						if (num == 1) {
+							$('#sum_count').html(0);
+							$('#sum_count').hide();
+							$("#tab").toggle();
+							$("#cover").toggle();
+						}else{
+							$('#sum_count').html(parseInt(num)-1);
+						}
+						$("#price").html(((price-pri)/100).toFixed(2));
+						$('#counts').html($('#cart li').length);
+					}
+				});
+				setTimeout(function(){
+					$(ele).data('flags','Y');
+				},1000);
+			}
+		}
+		//购买数量+1
+		function add(ele,id,pri,did){
+			//购物车内是否选中标识
+			var flag  = $(ele).parents('.shop-info').find('input').data('flag');
+			var num   = $('#sum_count').html();
+			var price = numDiv($('#price').html(),100);
+			var flags  = $(ele).data('flags');
+			$(ele).data('flags','N');
+			if (flags != 'N') {	
+				$.post("{:url('api/Cart/onechange')}",{'cart_id' : id, 'increment' : '1'}, function(result){
+					if (result.msg == '添加成功') {
+						$(ele).prev().html(parseInt($(ele).prev().html())+1);
+						if (flag == 'y') {
+							$('#'+did).html(parseInt($('#'+did).html())+1);
+							$('#'+did+'a').html(parseInt($('#'+did+'a').html())+1);
+							$('#sum_count').html(parseInt(num)+1);
+							$("#price").html(((parseInt(price)+parseInt(pri))/100).toFixed(2));
+						}
+					}else{
+						alert('库存不足');
+					}
+				});
+				setTimeout(function(){
+					$(ele).data('flags','Y');
+				},1000);
+			}
+		}
+		//单选购物车内数据
+		function re(ele,pri){
+			//购物车内是否选中标识
+			var flag = $(ele).data('flag');
+			var num  = $(ele).parent().find('.num').text();
+			var str  = 'Y';
+			//获取当前总金额
+			var price = numDiv($('#price').html(),100);
+			if (flag == 'y') {
+				//购物车内商品数量
+				$('#sum_count').html($('#sum_count').html()-num);
+				//购物车内选中总价值
+				$('#price').html(((price-parseInt(numDiv(num,pri)))/100).toFixed(2));
+				//购物车总条数
+				$('#counts').html($('#counts').html()-1);
+				//取消选中标识
+				$(ele).data('flag','n');
+				//获取购物车内所有数据是否被选中
+				$("input[name='inputName[]']").each(function(){
+					if ($(this).data('flag') == 'n') {
+						$('#checkAll').removeAttr('checked');
+					}
+				})
+			}else{
+				//购物车内商品数量
+				$('#sum_count').html(parseInt($('#sum_count').html())+parseInt(num));
+				//购物车内选中总价值
+				$('#price').html(((parseInt(price)+parseInt(numDiv(num,pri)))/100).toFixed(2));
+				//购物车总条数
+				$('#counts').html(parseInt($('#counts').html())+parseInt(1));
+				//选中标识
+				$(ele).data('flag','y');
+				//获取购物车内所有数据是否被选中
+				$("input[name='inputName[]']").each(function(){
+					if ($(this).data('flag') != 'y') {
+						str = 'N';
+					}
+				})
+				//当购物车内所有数据被选中全选按钮选中
+				if (str == 'Y') {
+					$('#checkAll').click();
+					// $('#checkAll').attr('checked','checked');
+				}
+			}
+            //有药品结算时按钮绿色，没有药品结算按钮灰色
+			var sum_num = Number($('#counts').html());
+            if (sum_num > 0){
+                $('.menuBtn1').addClass("settle_green");
+                $('.menuBtn1').removeClass("settle_gray");
+            }else{
+                $('.menuBtn1').addClass("settle_gray");
+                $('.menuBtn1').removeClass("settle_green");
+            }
+
+		}
+		//清空购物车
+		$('.coupons').on('click',function(){
+			var ids = '';
+			$("input[name='inputName[]']").each(function(){
+				ids += $(this).val()+',';
+			})
+			$.post("{:url('api/Cart/emptycart')}",{'str_cart' : ids}, function(result){
+				if (result.code == '200') {
+					$('#cart').html('');					//购物车
+					$('#sum_count').html(0);				//药品数量
+					$('#price').html((0).toFixed(2));		//总价格
+					$('#counts').html(0);					//药品种类
+					// $('#checkAll').removeAttr('checked');//购物车全选移除
+					$('.num').html(0);						//所有药品购买数量显示为0
+				}
+			});
+			$("#tab").toggle();
+			$("#cover").toggle();
+			$('#sum_count').hide();
+            $('.menuBtn1').addClass("settle_gray");
+            $('.menuBtn1').removeClass("settle_green");
+		})
+
+		
+		//结算
+		function getWay(){
+			var type = $('#way input:checked').val();
+			var str  = '';
+			var cart = '';
+			$("input[name='inputName[]']").each(function(){
+				if ($(this).data('flag') == 'y') {
+					str += $(this).val()+',';
+				}
+			});
+			cart = str.substring(0,str.length-1);
+			if(type == 'give'){
+				//送药上门
+				window.location.href = '/wechat/order?cart_ids='+cart;
+			}else{
+				//到点取药
+				window.location.href = '/wechat/order/self_take?cart_ids='+cart;
+			}
+		}
+
+		//乘法计算(不失精度)
+		function numDiv(arg1, arg2) {
+			var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+			try {
+				m += s1.split(".")[1].length;
+			}catch (e) {}
+			try {
+				m += s2.split(".")[1].length;
+			}catch (e) {}
+			return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+		};
+
+		$(document).on('click','.search',function(){
+			var search = $('.yaodian_index_search').val();
+			var html   = '';
+			var id    = "<?php echo $_GET['f_id'] ?>";
+			$('#search').remove();
+			$.post("{:url('api/Pharmacy/search')}",{'search' : search,'sid' : id}, function(result){
+				html = '<div id="search" class="tab"><div class="yaodian_indexDIV"><ul class="yaodian_indexDIV_ul">';
+				var data = result.data;
+				for(var x in data){
+					if (data[x].drug_detailed_img == '' || data[x].drug_detailed_img == null) {
+						var img = '<img src="__STATIC__/wechat/img/none.jpg"/>\n'
+					}else{
+						var img = '<img src="'+data[x].drug_detailed_img+'"/>\n'
+					}
+					html += '<li class="yaodian_indexDIV_li"><div class="yaodian_indexDIV_liDiv"><a href="/wechat/drug/index.html?id='+data[x].did+'&pid='+data[x].sid+'"><div class="yaodian_indexDIV_img">'+img+'</div></a><div class="yaodian_indexDIV_liDiv1"><a href="/wechat/drug/index.html?id='+data[x].did+'&pid='+data[x].sid+'"><p class="yaodian_indexDIV_liH">'+data[x].drug_store_name+'</p></a><p class="yaodian_indexDIV_liS">'+data[x].drug_detailed_specifications+'</p><p class="yaodian_indexDIV_liS">'+data[x].drug_detailed_manufactor+'</p><div class="yaodian_indexDIV_liDiv2"><span class="yaodian_indexDIV_Span">￥ <span class="price">'+data[x].drug_store_activity_price/100+'</span><del class="yaodian_indexDIV_Del">￥ '+data[x].drug_store_retail_price/100+'</del>';
+					if(data[x].drug_store_num != '0'){
+						html +=
+							'<div class="shop-arithmetic">'+
+								'<a href="javascript:;" class="minus jian"onclick=addcart("'+data[x].sid+'","'+data[x].id+'","'+data[x].drug_store_name+'","'+data[x].drug_detailed_specifications+'","'+data[x].drug_detailed_img+'","'+data[x].drug_store_activity_price+'","0")>-</a>'+
+								'<span class="num" id="'+data[x].id+'a">'+data[x].cart_drug_num+'</span>'+
+								'<a href="javascript:;" class="plus jia" onclick=addcart("'+data[x].sid+'","'+data[x].id+'","'+data[x].drug_store_name+'","'+data[x].drug_detailed_specifications+'","'+data[x].drug_detailed_img+'","'+data[x].drug_store_activity_price+'","1")>+</a>'+
+							'</div>'
+					}else{
+						html += '<span class="yaodian_indexDIV_Spa">无库存药</span>';
+					}
+				}
+				html += '</div></div></div></li></ul></div></div>';
+				$('.menu_tab').append(html);
+				$('#search').addClass('active').siblings().removeClass('active');
+				$('.menus a').css({'background':'','color':''});
+			});
+		})
+		$('.gothere').on('click',function(){
+			var lat = $(this).attr('data-lat');
+			var lng = $(this).attr('data-lng');
+			var name = $(this).attr('data-name');
+			location.href='https://apis.map.qq.com/tools/routeplan/eword='+name+'&epointx='+lng+'&epointy='+lat+'?referer=myapp&key=SDNBZ-7FCRU-K3WVX-4SB33-PKAXV-3FB7L';
+		})
+	</script>
+
+</html>

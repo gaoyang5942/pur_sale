@@ -1,0 +1,504 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>送货上门</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link type="text/css" rel="stylesheet" href="__STATIC__/wechat/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="__STATIC__/wechat/css/module.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/dizhiguanli.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/wodingdan.css" />
+	</head>
+
+	<body>
+		<header>
+			<div>
+				<div class="dingdxq_head">
+					<img src="__STATIC__/wechat/img/dingwei_logo.png" />
+					<div class="dingdxq_head_div" id="address" style="display: none;" onclick="get_addr()">
+						<p>
+							<span class="dingdxq_head_name" style="font-size:22px;"></span>
+							<span class="dingdxq_head_num" style="font-size: 18px;"></span>
+						</p>
+						<a href="javascript:void(0)" id="addr_detail" style="font-size: 18px;"></a>
+					</div>
+				</div>
+				<div class="songyao_div" style="display: none;" id="address_select">
+					<a href="javascript:void(0)" class="songyao_divA" onclick="get_addr()">
+						<img class="songyao_divA_img" src="__STATIC__/wechat/img/dingweiLog.png"/>
+						<span>点击此处，选择您的地址</span>
+					</a>
+				</div>
+			</div>
+		</header>
+		<div class="container">
+			<div class="container_Div">
+					<div class="zhifuxuanze">
+						<ul class="zhifu_ul">
+							<li class="dingdxq_mian_div_li songyao_li">
+								<div class="xuanzhe_div" id="bot">
+									<span><i style="color: red;">*</i> 配送时间</span>
+									<span class="xuanzhe_div_span songhuo_span">
+										<span class="xuan_span" shipping_time="immediately">立即配送<img src="__STATIC__/wechat/img/shouhuo_img.png"/></span>
+									</span>
+								</div>
+								<div class="xuanzhe_divShow zezaoceng_pop" id="tab_quyao">
+									<h3>配送时间</h3>
+									<ul class="xuanzhe_divShow_ul show_ul" style="height: 200px;overflow: auto;">
+									</ul>
+									
+									<p class="guanbi">关 闭</p>
+								</div>
+							</li>
+							<li class="dingdxq_mian_div_li songyao_li">
+								<div class="xuanzhe_div" id="bot1">
+									<span><i style="color: red;">*</i> 支付选择</span>
+									<span class="xuanzhe_div_span songhuo_span">
+										<span class="xuan_span1" pay_type="1">线上支付<img src="__STATIC__/wechat/img/shouhuo_img.png"/></span>
+									</span>
+								</div>
+								<div class="xuanzhe_divShow zezaoceng_pop" id="tab_quyao1">
+									<h3>支付选择</h3>
+									<ul class="xuanzhe_divShow_ul1 show_ul">
+										<li pay_type="1">线上支付</li>
+										<li pay_type="2">货到付款</li>
+									</ul>
+									<p class="guanbi">关 闭</p>
+								</div>
+							</li>
+						</ul>
+						
+					</div>
+					
+					<div class="zezaoceng" id="zezaoceng"></div>
+					<div class="zezaoceng" id="zezaoceng1"></div>
+				<div class="ywcheng daodianziqu">
+
+					<div class="ywcheng">
+						<div class="ywcheng_h">
+							<a href="#" class="ywcheng_h_a">
+								<img src="__STATIC__/wechat/img/yaodian_img.png" />
+								<span id="store_name"></span>
+							</a>
+						</div>
+						<div class="ywcheng_mian">
+							<div class="ywcheng_mian_sp">
+							</div>
+						</div>
+
+					</div>
+
+					<div class="dingdxq_mian_div">
+						<ul class="dingdxq_mian_div_ul">
+							
+							<li>
+								<span class="dingdxq_mian_div_span">商品总价 : </span>
+								<span class="dingdxq_mian_div_span2" id="sub_total"></span>
+							</li>
+							<li>
+								<span class="dingdxq_mian_div_span">优惠金额 : </span>
+								<span class="dingdxq_mian_div_span2" id="discount"></span>
+							</li>
+							<li>
+								<span class="dingdxq_mian_div_span">医保支付 : </span>
+								<span class="dingdxq_mian_div_span2" id="medical_pay"></span>
+							</li>
+							<li>
+								<span class="dingdxq_mian_div_span">自费支付 : </span>
+								<span class="dingdxq_mian_div_span2" id="self_pay"></span>
+							</li>
+							<li>
+								<span class="dingdxq_mian_div_span">配送费 : </span>
+								<span class="dingdxq_mian_div_span2" id="shipping"></span>
+							</li>
+							<li>
+								<span class="dingdxq_mian_div_span">本次积分 : </span>
+								<span class="dingdxq_mian_div_span2" id="integral"></span>
+							</li>
+							<li>
+								<span class="dingdxq_mian_div_span">订单总价 : </span>
+								<span class="dingdxq_mian_div_span3" id="total">￥<span class="total"></span></span>
+							</li>
+							<li>
+								<form action="" method="post" class="dingdxq_mian_div_ul_form">
+							<span style="float: left;">备注</span>
+							<textarea style="border:0;margin-left: 0.5rem;padding: 0.2rem;" id="orgAuditDesc" name="orgAuditDesc" rows="2" cols="" placeholder="请填写30字内"></textarea>
+							<p style="display: inline-block;"><span id="text-count">30</span>/30</p>
+								
+							<!--<input type="text" value="" placeholder="请填写30字内" />-->
+						</form>
+							</li>
+							<li class="dingdxq_mian_div_ul_num">
+								<span>共计<b class="drug_num"></b>件商品</span>
+								<span>合计 : <span class="daodian_num">￥<span class="total"></span></span></span>
+							</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!--错误提示-->
+		<div class="cuowu iframe" style="display: none">
+			<p class="p1">无法操作</p>
+			<p class="p"><img src="__STATIC__/wechat/img/cuowu_tishi.png" style="width: 15%;"/></p>
+			<p class="p2"></p>
+			<p class="p3"><a href="javascript:void(0)" onclick="deal()">知道了</a></p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs" style="display: none"></div>
+		<!--错误提示 end-->
+		<footer class="daifahuo_footer">
+			<div class="foot_daifuK">
+				<span class="foot_daifuK_zj">总计 : </span>
+				<span class="foot_daifuK_num"><small>￥</small><span class="total"></span></span>
+				<a href="javascript:void(0)" id="pay_order" onclick="create_order()" style="pointer-events:none">去结算(<span class="drug_num"></span>)</a>
+			</div>
+		</footer>
+
+	</body>
+	<script type="text/javascript" src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/base.js"></script>
+	<script type="text/javascript">
+		if(!sessionStorage.getItem('last_page'))
+		{
+			sessionStorage.setItem('last_page', document.referrer);
+		}
+		var param = get_url_param();
+		var order_no = 0;
+		var address_id = param.address_id ? param.address_id : 0;
+		var cart_ids = param.cart_ids ? param.cart_ids : sessionStorage.getItem('cart_ids');
+		$(document).ready(function(){
+			$.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+                else if(data.code == '200')
+                {
+                	get_order_info();
+                }
+            });
+		});
+		$(function() {
+			$("#tab_quyao").hide()
+			$("#zezaoceng").hide()
+		})
+		$("#bot").click(function() {
+			$("#tab_quyao").toggle();
+			$("#zezaoceng").toggle();
+		})
+		$("#zezaoceng").click(function() {
+			$("#tab_quyao").hide()
+			$("#zezaoceng").hide()
+		})
+		$('.guanbi').click(function() {
+			$("#tab_quyao").hide();
+			$("#zezaoceng").hide();
+			$("#tab_quyao1").hide();
+			$("#zezaoceng1").hide();
+		})
+		$(function() {
+			$("#tab_quyao1").hide()
+			$("#zezaoceng1").hide()
+		})
+		$("#bot1").click(function() {
+			$("#tab_quyao1").toggle();
+			$("#zezaoceng1").toggle();
+		})
+		$("#zezaoceng1").click(function() {
+			$("#tab_quyao1").hide()
+			$("#zezaoceng1").hide()
+		})
+
+		/*字数限制*/
+	    $("#orgAuditDesc").on("input propertychange", function () {
+	        var $this = $(this),
+	                _val = $this.val(),
+	                count = "";
+	        if (_val.length > 30) {
+	            $this.val(_val.substring(0, 30));
+	        }
+	        count = 30 - $this.val().length;
+	        $("#text-count").text(count);
+	    });
+		// if ($('.dingdxq_head_name').text()=="") {//定位显示隐藏
+		// 	$('.songyao_div').show();
+		// 	$('.dingdxq_head').hide();
+		// }
+		$('.dizhi_guanli .dizhi_guanli_formA1').each(function() {
+			$(this).click(function() {
+				$(this).parent().parent().parent().remove('.dizhi_guanli');
+			})
+		})
+//		$('.xuanzhe_div_span').each(function(){//配送时间，配送方式
+//			$(this).click(function(){
+//				
+//				$(this).parent().siblings("div").toggle()
+//			})
+//		})
+		
+		$('.xuanzhe_divShow_ul1 li').each(function(){
+			$(this).click(function(){
+				var time_text=$(this).text();
+				var pay_type = $(this).attr('pay_type');
+				$(".xuan_span1").addClass("time_img").text(time_text);
+				$(".xuan_span1").attr('pay_type', pay_type);
+			})
+		})
+
+		function deal()
+		{
+			$('.cuowu.iframe').hide();
+			$('.cuowuTs').hide();
+		}
+
+		// $(function() { //错误提示js
+		// 	$("#iframe").hide();
+		// 	$("#cuowuTs").hide();
+		// });
+		// $(".p3").click(function() { //错误提示js
+		// 	$("#iframe").hide();
+		// 	$("#cuowuTs").hide();
+		// });
+		// $("#cuowuTs").click(function() { //错误提示js
+		// 	$("#iframe").hide()
+		// 	$("#cuowuTs").hide()
+		// });
+		function save_session()
+		{
+			if(!sessionStorage.getItem('cart_ids'))
+			{
+				sessionStorage.setItem('cart_ids', param.cart_ids);
+			}
+			sessionStorage.setItem('shipping_time_html', $('.xuan_span').html());
+			sessionStorage.setItem('shipping_time', $('.xuan_span').attr('shipping_time'));
+			sessionStorage.setItem('pay_type_html', $('.xuan_span1').html());
+			sessionStorage.setItem('pay_type', $('.xuan_span1').attr('pay_type'));
+			sessionStorage.setItem('orgAuditDesc', $('#orgAuditDesc').val());
+		}
+
+		function get_addr()
+		{
+			save_session();
+			location.href="/wechat/index/address_info?to=order";
+		}
+
+		// function go_drug_detail(id, pid)
+		// {
+		// 	save_session();
+
+		// 	location.href="/wechat/drug/index.html?id="+id+"&pid="+pid;
+		// }
+
+		function create_order()
+		{
+			$('#pay_order').css('pointer-events', 'none');
+			var data = {};
+			data.order_type = 1;
+			data.cart_ids = cart_ids;
+			data.address_id = address_id;
+			data.drugorder_payment_method = $('.xuan_span1').attr('pay_type');
+			data.arrive_time = $('.xuan_span').attr('shipping_time');
+			data.remark = $('#orgAuditDesc').val();
+
+			if(!data.address_id)
+			{
+				$('.cuowu.iframe').show();
+				$('.cuowuTs').show();
+				$('.p2').text('收货地址有误');
+
+				return false;
+			}
+
+			$.ajax({
+				type: 'post',
+				url: '/api/order/store',
+				data: data,
+				dataType: 'json',
+				success: function(response){
+					var type = $('.xuan_span1').attr('pay_type');
+					if(response.error == 0)
+					{
+						if (type == 1) {
+							location.href = '/wechat/weins/weinspay?order_no=' + response.data.order_id;
+						}else if (type == 2) {
+							location.href = '/wechat/order/all';
+						}
+					}
+					else
+					{
+						$('.cuowu.iframe').show();
+						$('.cuowuTs').show();
+						$('.p2').text(response.msg);
+						$('#pay_order').css('pointer-events', 'auto');
+					}
+				},
+				error: function(error){
+					$('.cuowu.iframe').show();
+					$('.cuowuTs').show();
+					$('.p2').text('创建订单失败！');
+					$('#pay_order').css('pointer-events', 'auto');
+				}
+			});
+		}
+
+		function get_order_info()
+		{
+			//获取地址之后恢复原来填写的信息
+			if(sessionStorage.getItem('orgAuditDesc'))
+			{
+				$('#orgAuditDesc').html(sessionStorage.getItem('orgAuditDesc'));
+				sessionStorage.removeItem('orgAuditDesc');
+			}
+			if(sessionStorage.getItem('shipping_time'))
+			{
+				$('.xuan_span').html(sessionStorage.getItem('shipping_time_html'));
+				$('.xuan_span').attr('shipping_time', sessionStorage.getItem('shipping_time'));
+				sessionStorage.removeItem('shipping_time_html');
+				sessionStorage.removeItem('shipping_time');
+			}
+			if(sessionStorage.getItem('pay_type'))
+			{
+				$('.xuan_span1').html(sessionStorage.getItem('pay_type_html'));
+				$('.xuan_span1').attr('pay_type', sessionStorage.getItem('pay_type'));
+				sessionStorage.removeItem('pay_type_html');
+				sessionStorage.removeItem('pay_type');
+			}
+
+			$.ajax({
+				type: 'post',
+				url: '/api/order/create',
+				data: {order_type: 1, cart_ids: cart_ids, address_id: address_id},
+				success: function(response){
+					if(response.error == 0)
+					{
+						var response_data = response.data;
+						order_no = response_data.drugorder_number;
+						var addr_info = response_data.shipping_address;
+						if(!$.isEmptyObject(addr_info))
+						{
+							$('#address').show();
+							$('.dingdxq_head_name').text(addr_info.address_name);
+							$('.dingdxq_head_num').text(addr_info.address_tel);
+							$('#addr_detail').text('配送地址 : ' + addr_info.address_detailed);
+						}
+						else
+						{
+							$('.dingdxq_head').hide();
+							$('#address_select').show();
+						}
+
+						var end_dispatch_time = response_data.pharmacy.end_dispatch_time.split(':');
+						var myDate = new Date();
+						var start_hour = hours = myDate.getHours();
+						var minutes = myDate.getMinutes();
+						if(minutes < 30)
+						{
+							start_hour = hours;
+							var minutes_arr = ['30', '00'];
+						}
+						else
+						{
+							start_hour = hours + 1;
+							var minutes_arr = ['00', '30'];
+						}
+						var li = '<li shipping_time="immediately">立即配送</li>';
+						for(var i = start_hour; i <= end_dispatch_time[0]; i ++)
+						{
+							hour = i < 10 ? '0' + i : i;
+							if(hour < end_dispatch_time[0] || hour == end_dispatch_time[0] && minutes_arr[0] <= end_dispatch_time[1])
+							{
+								li += '<li shipping_time="'+hour+':'+minutes_arr[0]+'">'+hour+':'+minutes_arr[0]+'</li>';
+							}
+							if(minutes_arr[0] == '30')
+							{
+								hour = i + 1 < 10 ? '0' + (i + 1) : i + 1;
+							}
+							if(hour < end_dispatch_time[0] || hour == end_dispatch_time[0] && minutes_arr[1] <= end_dispatch_time[1])
+							{
+								li += '<li shipping_time="'+hour+':'+minutes_arr[1]+'">'+hour+':'+minutes_arr[1]+'</li>';
+							}
+						}
+						$('.xuanzhe_divShow_ul.show_ul').append(li);
+						$('.xuanzhe_divShow_ul li').each(function(){
+							$(this).click(function(){
+								var time_text=$(this).text();
+								$(".xuan_span").addClass("time_img").text(time_text);
+								var shipping_time = $(this).attr('shipping_time');
+								$(".xuan_span").attr('shipping_time', shipping_time);
+							});
+							$('.show_ul li').each(function(){ //点击添加class 移除class
+								$(this).click(function(){
+									$(this).addClass("active_show");
+									$(this).siblings().removeClass("active_show");
+								});
+							})
+						});
+
+						$('#store_name').text(response_data.pharmacy.pharmacy_name);
+
+						var drug_info = '';
+						for(var drug of response_data.cart_drug)
+						{
+							drug_info += '<ul class="dingdxq_mian_sp_ul1">';
+							drug_info += '<li class="daifahuo_mian_ulImg">';
+							if(drug.drug.drugdetail.drug_detailed_img)
+							{
+								drug_info += '<img src="__UPLOAD__/'+drug.drug.drugdetail.drug_detailed_img+'" />';
+							}
+							else
+							{
+								drug_info += '<img src="__STATIC__/wechat/img/none.jpg"';
+							}
+							drug_info += '</li>';
+							drug_info += '<li class="ywcheng_mian_ulText">';
+							drug_info += '<p class="ywcheng_mian_p1">'+drug.drug.drug_store_name+'</p>';
+							drug_info += '<p class="gybgg">'+drug.drug.drugdetail.drug_detailed_specifications+'</p>';
+							drug_info += '<p class="ywcheng_mian_p">';
+							drug_info += '<span class="ywcheng_mian_num1">￥'+drug.drug.drugdetail.drug_detailed_present_price/100+'</span>';
+							drug_info += '<span class="sancu_span"><del>￥'+drug.drug.drugdetail.drug_detailed_original_price/100+'</del></span>';
+							drug_info += '<span class="ywcheng_mian_num">x'+drug.cart_drug_num+'</span>';
+							drug_info += '</p>';
+							drug_info += '</li>';
+							drug_info += '</ul>';
+						}
+						$('.ywcheng_mian_sp').append(drug_info);
+
+						var price = response_data.total;
+						$('#sub_total').text('￥' + (price.sub_total/100).toFixed(2));
+						$('#discount').text('￥' + (price.discount/100).toFixed(2));
+						$('#medical_pay').text('￥' + (price.medical_pay/100).toFixed(2));
+						$('#self_pay').text('￥' + (price.self_pay/100).toFixed(2));
+						$('#shipping').text('￥' + (price.shipping/100).toFixed(2));
+						$('#integral').text(Math.floor(price.total));
+						$('.total').text((price.total/100).toFixed(2));
+
+						$('.drug_num').text(response_data.cart_drug.length);
+
+						$('#pay_order').css('pointer-events', 'auto');
+					}
+					else
+					{
+						$('.cuowu.iframe').show();
+						$('.cuowuTs').show();
+						$('.p2').text(response.msg);
+					}
+					sessionStorage.clear();
+				},
+				error: function(error){
+					$('.cuowu.iframe').show();
+					$('.cuowuTs').show();
+					$('.p2').text('获取订单信息失败！');
+				}
+				// data: {order_type: param.order_type, cart_ids: param.cart_ids, address_id: param.address_id},
+			});
+		}
+	</script>
+
+</html>

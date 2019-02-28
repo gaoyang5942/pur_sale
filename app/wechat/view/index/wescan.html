@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <title>扫一扫</title>
+        <style type="text/css">
+          html,body{
+            width: 100%;
+            height: 100%;
+          }
+          body{
+            background-color: #edf2f5;
+          }
+        </style>
+    </head>
+    <body>
+		<div class="scan">
+			<div class="scan-middle">
+				<img src="__ROOT__/Public/Wechat/images/scan.png" alt="">
+				<button type="button" name="button" class="sacn">点击扫一扫</button>
+			</div>
+		</div>
+    </body>
+</html>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	$.post('/api/wechat/we_getSignPackage',function(data){
+		wx.config({
+		    debug: false,
+		    appId: data.appId,   
+            timestamp:  data.timestamp,   
+            nonceStr:  data.nonceStr,   
+            signature:  data.signature, 
+		    jsApiList: ['scanQRCode']
+		});
+		wx.ready(function () {
+			// $(document).on('click','.sacn',function(){
+				wx.scanQRCode({
+					needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+					scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+					success: function (res) {
+					var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+						$.post('/api/order/get_order',{'order_no':result},function(data){
+							if(data.code == 200){
+								window.location.href='/wechat/order/get_order?order_no='+data.msg;
+							}else{
+								alert(data.msg);
+							}
+						})
+					}
+				});
+			//})
+		})
+		wx.error(function(res){
+			alert('信息调用有误，请重新刷新本页面');
+		});		
+	
+	})
+</script> 

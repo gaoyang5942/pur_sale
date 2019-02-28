@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="__STATIC__/wechat/css/address_management.css">
+    <link rel="stylesheet" href="__STATIC__/wechat/css/weui.min.css">
+    <title>请添填写信息</title>
+</head>
+
+<body>
+    <!--头部-->
+    <div class="container">
+        
+        <div class="add-list">
+            <div class="add-required">
+                <label><span style="color: red;">★</span>姓名</label>
+                <input type="text" placeholder="请填写姓名（必填）" id="distributor_username"/>
+            </div>
+            <div class="add-required">
+                <label><span style="color: red;">★</span>身份证号</label>
+                <input type="text" placeholder="请输入18位身份证号（必填）" id="distributor_card_id"/>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-after add-required">
+                <label class="weui-label"><span style="color: red;">★</span>选择性别</label>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" id="distributor_sex">
+                        <option value="1">男</option>                
+                        <option value="2">女</option>            
+                    </select>
+                </div>
+            </div>
+            <div class="add-required">
+                <label><span style="color: red;">★</span>联系电话</label>
+                <input type="text" placeholder="请输入11位手机号码（必填）" id="distributor_phone"/>
+            </div>
+        </div>
+        <div class="provide">
+            <h1>提供相关资料</h1>
+            <div class="datum">
+                <div class="datum-pic" id="idcard_b" onclick="$('#idcard_bc').click();">
+                    <img id="idcard_bg" src="__STATIC__/wechat/img/add.png" alt="图标">
+                    <p>本人手机拍摄正面照片</p>
+                </div>
+                <input type="file" class="datum-file" onchange="previewImage(this,'idcard_bg','idcard_b','distributor_card_photo')" style="display: none;" id="idcard_bc">
+            </div>
+            <div class="datum">
+                <div class="datum-pic" id="idcard_r" onclick="$('#idcard_rc').click();">
+                    <img id="idcard_rg" src="__STATIC__/wechat/img/add.png" alt="图标">
+                    <p>请上传身份证</p>
+                    <span>（人像面）</span>
+                </div>
+                <input type="file" class="datum-file" onchange="previewImage(this,'idcard_rg','idcard_r','distributor_card_img')" style="display: none;" id="idcard_rc">
+            </div>
+            <div class="datum">
+                <div class="datum-pic" id="idcard_g" onclick="$('#idcard_gc').click();">
+                    <img id="idcard_gg" border="0" src="__STATIC__/wechat/img/add.png">
+                    <p>请上传身份证</p>
+                    <span>（国徽面）</span>
+                </div>
+                <input type="file" class="datum-file" onchange="previewImage(this,'idcard_gg','idcard_g','distributor_card_pic')" style="display: none;" id="idcard_gc">
+            </div>
+        </div>
+        <div class="index-btn">
+            <button class="sub">提交</button>
+        </div>
+    </div>
+    <script src="__STATIC__/wechat/js/upload.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+    <script type="text/javascript">
+        var id     = "{$id}";
+        var openid = "{$openid}";
+        $(document).ready(function(){
+            //登录授予权限
+            $.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+            });
+        });
+
+        $.post("{:url('wechat/courier/verify')}",{"openid":openid,"id":id},function(result){
+            if (result.code == '200') {
+                window.location.href = '/wechat/courier/ok';
+            }
+        });
+        $(document).on('click', '.sub', function(){
+            var id = "{$id}";
+            var openid = "{$openid}";
+            var distributor_username   = $('#distributor_username').val();
+            var distributor_card_id    = $('#distributor_card_id').val();
+            var distributor_sex        = $('#distributor_sex').val();
+            var distributor_phone      = $('#distributor_phone').val();
+            var distributor_card_photo = $('#idcard_bg')[0].src;
+            var distributor_card_img   = $('#idcard_rg')[0].src;
+            var distributor_card_pic   = $('#idcard_gg')[0].src;
+            if (isCardNo(distributor_card_id) == false) {
+                alert('身份证号码不正确');
+                return false;
+            }
+            if (isPhoneNo(distributor_phone) == false) {
+                alert('手机号码不正确');
+                return false;
+            }
+            if (!distributor_username || !distributor_card_id || !distributor_sex || !distributor_phone || !distributor_card_photo || !distributor_card_img || !distributor_card_pic) {
+                alert('该页面所有信息必填');
+                return false;
+            }
+            var data = {"id":id,"distributor_openid":openid,"distributor_username":distributor_username,"distributor_card_id":distributor_card_id,"distributor_sex":distributor_sex,"distributor_phone":distributor_phone,"distributor_card_photo":distributor_card_photo,"distributor_card_img":distributor_card_img,"distributor_card_pic":distributor_card_pic};
+            $.post("{:url('wechat/courier/save')}",data, function(result){
+                console.log(result);
+                if (result.code == '200') {
+                    window.location.href = '/wechat/courier/ok';
+                }else{
+                    alert(result.msg);
+                }
+                
+            });
+        })
+        // 验证身份证
+        function isCardNo(card) {
+            var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            return pattern.test(card);
+        }
+
+        // 验证手机号
+        function isPhoneNo(phone) {
+            var pattern = /^1[34578]\d{9}$/;
+            return pattern.test(phone);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,401 @@
+/*header*/
+input[type=button], input[type=submit], input[type=file],input[type=checkbox],input[type=radio], button { 
+	cursor: pointer; 
+	-webkit-appearance: none; 
+	-o-appearance: none;
+} 
+input{
+	background: none;
+	outline: none;
+	border: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	background: #EFEFF4;
+	    overflow: hidden;
+}
+input::-webkit-search-cancel-button{
+  display: none;
+}
+input[type=search]::-ms-clear{
+  display: none;
+}
+.index_head_ul {
+	background-color: #000;
+	height: 4rem;
+	line-height: 4rem;
+}
+
+.index_head_ul_li {
+	font-size: 20px;
+	width:33%;
+	text-align: center;
+}
+
+.index_head_ul_li3 {
+	width: 19%;
+}
+
+.index_head_ul_li2 {
+	width: 15%;
+	margin-left: 0.6rem;
+}
+
+.index_head_ul_li4 {
+	width: 28%;
+	text-align: right;
+}
+.gouwu_head_ul_li4 {
+	width: 28%;
+	text-align: right;
+}
+
+.index_head_ul li {
+	list-style: none;
+	display: inline-block;
+	color: white;
+	line-height: 4rem;
+}
+
+.index_head_ul li a {
+	display: inline-block;
+	width: 100%;
+	color: white;
+	font-size: 16px;
+	font-weight: 100;
+	line-height: 1.7rem;
+}
+
+.index_head_ul_li2_a img {
+	float: left;
+	width: 33%;
+}
+.iframe{
+	position: absolute;
+    top: 40%;
+    border: 0;
+    width: 70%;
+    margin: 0 auto;
+    margin-left: 3.3rem;
+    z-index: 333;
+}
+.cuowu{
+	text-align: center;
+    background: white;
+    border: 1px solid #cdcdcd;
+}
+			.p1{margin-top: 1rem;margin-bottom: 0.5rem}
+			.p2{padding-bottom:0.5rem;border-bottom: 1px solid #CDCDCD;}
+			.p3{padding: 0.3rem 0;}
+			.p3 a{text-decoration: none;color: #3DC53C;display: block;width: 100%;font-size: 20px;}
+
+/*header end*/
+/*错误提示遮罩层*/
+.cuowuTs{background-color: black;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	opacity: 0.5;
+	z-index: 2;}
+.cuowu_div{
+	min-width: 80%;
+	background-color: white;
+	z-index:333;
+	margin-left: 2.5rem;
+	position: absolute;
+    z-index: 999;
+    top:35%;
+    height: px;
+    line-height: 45px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.yaodian_lv{
+    display: inline-block;
+    width: 33px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 5px;
+    background: #11C693;
+    text-align: center;
+    color: white;
+      font-size: 12px;
+}
+/*错误提示遮罩层 end*/
+/*footer*/
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: white;
+	overflow: hidden;
+}
+
+footer nav ul li {
+	display: inline-block;
+	width: 31%;
+	text-align: center;
+	padding: 5px 0;
+	margin-left: 0.2rem;
+}
+.container_Div{margin-bottom: 5rem;}
+.clear {
+	clear: both;
+}
+
+footer nav ul li a span {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+footer nav ul li a {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+footer .foot_logoSpan {
+	color: #AAA9A9;
+}
+
+footer .foot_logoSpanH {
+	color: #3399ff;
+}
+
+footer nav ul li a span img {
+	display: block;
+	width: 24%;
+	text-align: center;
+	margin: 0 auto;
+}
+footer nav ul li a .index_divImg_sap {
+       display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: red;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+    position: absolute;
+    margin-left:4.2rem;
+}
+
+/*footer end*/
+.dizhi_name{
+      width:80%;
+      margin-bottom: 0.5rem;
+     /* height: 28px;
+      line-height: 28px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;*/
+    }
+    .quandian_p{
+	display: inline-block;
+    width: 48%;
+    text-align: center;
+    border-right: 1px solid #cdcdcd;
+}
+.p4{
+	    display: inline-block;
+    width: 48%;
+    text-align: center;
+}
+@media only screen and (max-width: 320px) {
+    .form_search {
+        position: relative;
+        display: inline-block;
+        width: 46%;
+    }
+    .mlist-title p {
+        width:26%;
+        font-size: 1rem;
+        background: #fff;
+        text-align: center;
+        color: #a4a4a4;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width:400px) {
+ /*.xuanzhe_div .xuanzhe_div_span span {
+    display: inline-block;
+    margin-top: 0.21rem;
+}*/
+	.shopPrice .footer_divJs{
+	width: 78%;
+    display: inline-block;
+    float: right;
+    line-height: 43px;
+	}
+	.footer_divJs .footer_divJspan{
+		    margin-left: 0.7rem;
+	}
+.index_head_ul .daifahuo_head_ul_li {
+    font-size: 20px;
+    width: 33%;
+    text-align: center;
+}
+.index_head_ul .index_head_ul_li2 {
+    width: 15%;
+}
+.index_head_ul_li3 {
+    width: 15%;
+}
+.index_head_ul .daifahuo_head_ul_li1{
+	font-size: 20px;
+    width:40%;
+    text-align: center;
+}
+.daifa_head_ul_li41 {
+	width:19%;
+	text-align: right;
+}
+.dingdxq_mian_sp_ul1 .ywcheng_mian_ulText {
+    margin-left: 1rem;
+    width: 56%;
+}
+.index_head_ul .daifakuan_head_ul_li {
+	font-size: 20px;
+	width: 40%;
+	text-align: center;
+}
+.daifa_head_ul_li4 {
+    width: 19%;
+    text-align: right;
+}
+.dingwei_head_ul_li3{
+	width: 15%;
+	margin-left: 0.6rem;
+}
+.tianjia_formLi .tianjia_formLi_li input {
+    display: inline-block;
+    font-size: 17px;
+    border: 0;
+    padding: 0.3rem 0 0.3rem 0.2rem;
+}
+.dizhi_select {
+    display: inline-block;
+    width: 39%;
+    margin-left: 1rem;
+    border: 0;
+    background: #EFEFF4;
+}
+.form_search {
+    position: relative;
+    display: inline-block;
+    width: 46%;
+}
+.index_head_ul .songyao_head_ul_li {
+    font-size: 20px;
+    width: 48%;
+    text-align: center;
+}
+.index_head_ul .songyao_head_ul_li4 {
+	width: 16%;
+	text-align: right;
+}
+.ywcheng_mian_sp .dingdxq_mian_sp_ul1 .ywcheng_mian_ulText {
+    margin-left: 1rem;
+    width: 56%;
+}
+.index_head_ul_li {
+    font-size: 20px;
+    width: 31%;
+    text-align: center;
+}
+.gouwu_head_ul_li4 {
+    width: 26%;
+    text-align: right;
+}
+   .tianjia_formLi1 li input {
+    width: 59%;
+    display: inline-block;
+    font-size: 17px;
+    border: 0;
+    padding: 0.3rem 0 0.3rem 1rem;
+}
+.yaodian_index_img {
+    display: inline-block;
+    position: relative;
+    font-size: 12px;
+    width: 34%;
+    line-height: 32px;
+}
+.goods_list1_ulLi .goods_bottom1 {
+    display: inline-block;
+   	width: 67%;
+}
+.goods_bottom1 .yaodian_yixuan_Divnum .goods_price {
+    margin-right: 0.5rem;
+}
+.goods_list1 ul .goods_list1_ulLi p {
+    width: 31%;
+    display: inline-block;
+}
+.chaochu{
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+footer nav ul li a .index_divImg_sap {
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: red;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+    position: absolute;
+    margin-left: 3.2rem;
+}
+.footer_divJs {
+    width: 78%;
+    display: inline-block;
+    float: right;
+    line-height: 43px;
+}
+.shop-info-text .shop-pices {
+    display: inline-block;
+    margin-left: 0;
+}
+}
+@media only screen and (min-width: 360px) and (max-width: 400px) {
+footer nav ul li a .index_divImg_sap {
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: red;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+    position: absolute;
+    margin-left: 3.6rem;
+}
+}
+@media only screen and (min-width: 390px) and (max-width: 420px) {
+.index_head_ul .daifahuo_head_ul_li {
+    font-size: 20px;
+    width: 35%;
+    text-align: center;
+}
+.index_head_ul .index_head_ul_li2 {
+    width: 15%;
+}
+.index_head_ul_li3 {
+    width: 15%;
+}
+
+
+}

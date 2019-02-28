@@ -1,0 +1,100 @@
+<include file="public/header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('user/index')}">管理员列表</a></li>
+			<li><a href="{:url('user/add')}">添加管理员</a></li>
+			<li class="active"><a>编辑管理员</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('User/edit_post')}">
+			<div class="form-group">
+				<label for="input-user_login" class="col-sm-2 control-label"><span class="form-required">*</span>用户名</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="input-user_login" name="user_login" value="{$user.user_login}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-user_pass" class="col-sm-2 control-label"><span class="form-required">*</span>密码</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="password" class="form-control" id="input-user_pass" name="user_pass" value="" placeholder="******">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-user_email" class="col-sm-2 control-label"><span class="form-required">*</span>角色</label>
+				<div class="col-md-6 col-sm-10">
+					<foreach name="roles" item="vo">
+						<label class="checkbox-inline" style="padding-left: 0px;">
+							<php>$role_id_checked=in_array($vo['id'],$role_ids)?"checked":"";</php>
+							<input class="btn_local" value="{$vo.id}" type="radio" name="role_id[]" {$role_id_checked} <if condition="get_current_admin_id() neq 1 && $vo['id'] eq 1">disabled="true"</if>>{$vo.name}
+						</label>
+					</foreach>
+				</div>
+			</div>
+			<div class="form-group" id="brand_div" <if condition="$role_ids[0] <= 2"> style="display: none;" </if>>
+				<label for="input-user_email" class="col-sm-2 control-label">品牌</label>
+				<div class="col-md-6 col-sm-10">
+					<select class="form-control" name="pid" id="pid">
+						<foreach name="brand" item="vo">
+							<option value="{$vo.id}" <if condition="$user['pid'] eq $vo['id']"> selected </if>>{$vo.pharmacy_name}</option>
+						</foreach>
+						<option value="0">单体店</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group" id="store_div" <if condition="$role_ids[0] <= 4"> style="display: none;" </if>>
+				<label for="input-user_email" class="col-sm-2 control-label">药店</label>
+				<div class="col-md-6 col-sm-10">
+					<select class="form-control" name="spid" id="spid">
+						<foreach name="store" item="vo">
+							<option value="{$vo.id}"  <if condition="$user['spid'] == $vo['id']"> selected </if>>{$vo.pharmacy_name}</option>
+						</foreach>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="hidden" name="id" value="{$id}" />
+					<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+					<a class="btn btn-default" href="javascript:history.back(-1);">返回</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+	<script>
+		//权限对应的品牌药店
+		$(document).on('click', '.btn_local', function(event) {
+			var role_id = $(this).val();
+			if(role_id == 4){
+				$('#brand_div').show();
+				$('#store_div').hide();
+			}
+			if(role_id == 9 || role_id == 10){
+				$('#brand_div, #store_div').show();
+			}
+			if(role_id == 1 || role_id == 2){
+				$('#brand_div, #store_div').hide();
+			}
+		});
+
+		//点击权限对应的药店联动
+		$(document).on('change', '#pid', function(event) {
+			if($('#store_div').not(':hidden')){
+				$.ajax({
+		            type: "GET",
+		            url: "/admin/user/get_brand_store",
+		            data: { brand:$("#pid").val() },
+		            dataType: "json",
+		            success: function(data){
+		            	$("#spid").html("<option value=''>请选择</option>");
+		            	for (var i = 0; i < data.length; i++) {
+		            		$("#spid").append("<option value='"+data[i].id+"'>"+data[i].pharmacy_name+"</option>");
+		            	}
+		            }
+		        });
+			}
+		});
+	</script>
+</body>
+</html>

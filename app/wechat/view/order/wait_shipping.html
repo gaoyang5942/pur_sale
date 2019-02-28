@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单待发货</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/wodingdan.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/wechat/css/nav.css" />
+	</head>
+	<style type="text/css">
+		body {
+			background: #F0EFF5;
+		}
+		.dingdanDfh_foot_xq {
+		    display: inline-block;
+		    border: 1px solid #999;
+		    border-radius: 50px;
+		    text-align: center;
+		    padding: 2px 0;
+		    width: 101px;
+		    float: left;
+		    color: #999;
+		    margin-right: 0.5rem;
+		}
+		.ywcheng_foot_dd {
+		    display: inline-block;
+		    border: 1px solid #53A8F0;
+		    border-radius: 50px;
+		    text-align: center;
+		    padding: 2px 0;
+		    width: 100px;
+		    float: right;
+		    color: #53A8F0;
+		    margin-left: 0.5rem;
+		}
+		.ywcheng_h_a .ywcheng_Img {
+		   	display: inline-block;
+		    width: 13%;
+		    float: right;
+		    margin-top: 3px;
+		}
+		.ywcheng_h_a .ywcheng_Img1 {
+		    display: inline-block;
+		    width: 7%;
+		    float: left;
+		    margin-top: 2px;
+		}
+		.ywcheng_h_spa{display: inline-block;}
+		.ywcheng_h_a {
+		    display: inline-block;
+		    width: 62%;
+		    margin-left: 1rem;
+		    padding: 13px 0 8px 0;
+		    color: #000;
+		}
+	</style>
+
+	<body>
+		<header>
+		
+			<div class="wodingdan_nav">
+				<ul class="wodingdan_nav_ul">
+					<li class="wodingdan_nav_li">
+						<a href="/wechat/order/all">全部</a>
+					</li>
+					<li class="wodingdan_nav_li">
+						<a href="/wechat/order/wait_pay">待付款</a>
+					</li>
+					<li class="wodingdan_nav_li1">
+						<a href="javascript:void(0)" class="wodingdanA">待发货</a>
+						<span class="index_divImg_sap" style="display:none"></span>
+					</li>
+					<li class="wodingdan_nav_li">
+						<a href="/wechat/order/wait_receive">待收货</a>
+					</li>
+					<li class="wodingdan_nav_li2">
+						<a href="/wechat/order/post_sale">退款/售后</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<div class="container">
+			<div class="container_Div">
+			</div>
+		</div>
+		<!--错误提示-->
+		<div class="cuowu iframe" style="display: none">
+			<p class="p1">无法操作</p>
+			<p class="p"><img src="__STATIC__/wechat/img/cuowu_tishi.png" style="width: 15%;"/></p>
+			<p class="p2"></p>
+			<p class="p3"><a href="javascript:void(0)">知道了</a></p>
+		</div>
+		<div class="cuowuTs" id="cuowuTs" style="display: none"></div>
+		<!--错误提示 end-->
+		<footer class="footer">
+			<nav>
+				<ul>
+					<li>
+						<a href="/wechat/index/index">
+							<span class="foot_logoSpan"><img src="__STATIC__/wechat/img/foot_logofh.png"/></span>
+							<span class="foot_logoSpan">首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/cart/cart">
+							<span><img src="__STATIC__/wechat/img/foot_logoGh.png"/></span>
+							<span class="foot_logoSpan">购物車</span>
+						</a>
+					</li>
+					<li>
+						<a href="/wechat/index/medicine">
+							<span><img src="__STATIC__/wechat/img/geren_blue.png"/></span>
+							<span class="foot_logoSpanH">我的</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
+
+	</body>
+	<script type="text/javascript" src="__STATIC__/wechat/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/wechat/js/base.js"></script>
+	<script type="text/javascript">
+		var static = '__STATIC__';
+		var upload = '__UPLOAD__';
+		
+		$(document).ready(function(){
+			$.post("/api/wechat/get_user_info",function(data){
+                var data = JSON.parse(data);
+                if(data.code == '202'){
+                    window.location.href = '/api/wechat/oauth';
+                }
+                else if(data.code == '200')
+                {
+                	get_wait_shipping();
+                }
+            });
+
+			$(".p3").click(function() { //错误提示js
+				$("#iframe").hide();
+				$("#cuowuTs").hide();
+			});
+			$("#cuowuTs").click(function() { //错误提示js
+				$("#iframe").hide()
+				$("#cuowuTs").hide()
+			});
+		});
+
+		function get_wait_shipping()
+		{
+			$.ajax({
+				type: 'POST',
+				url: '/api/order/get_orders_by_status',
+				data: {status: 'wait_shipping'},
+				dataType: 'json',
+				success: function(response){
+					if(response.code == 200)
+					{
+						var order_info = response.order_info;
+						if(order_info.length > 0)
+						{
+							$('.index_divImg_sap').show().text(order_info.length);
+
+							// <div class="ywcheng">
+							// 	<div class="ywcheng_h">
+							// 		<a href="#" class="ywcheng_h_a">
+							// 			<img class="ywcheng_Img1" src="__STATIC__/wechat/img/yaodian_img.png" />
+							// 			<span>吉林大药房<img class="ywcheng_Img" src="__STATIC__/wechat/img/arrow.png"/></span>
+							// 		</a>
+							// 		<span class="yiwanc">买家已付款</span>
+							// 	</div>
+							// 	<div class="ywcheng_mian">
+							// 		<div class="ywcheng_mian_sp">
+							// 			<ul class="ywcheng_mian_sp_ul1">
+							// 				<li class="ywcheng_mian_ulImg"><img src="__STATIC__/wechat/img/ef0591ef1e7e8d5f1ffbc98ba859d59.png" /></li>
+							// 				<li class="ywcheng_mian_ulText">
+							// 					<p class="ywcheng_mian_p1">藿香正气水</p>
+							// 					<p>该药品规格</p>
+							// 					<p class="dingdanDfh_mian_p">
+							// 						<span>￥12.00</span>
+							// 						<span class="ywcheng_mian_num">x1</span>
+							// 					</p>
+							// 				</li>
+							// 			</ul>
+
+							// 		</div><br>
+							// 		<div class="ywcheng_mian_jg">
+							// 			<p>
+							// 				共计1件商品&nbsp;&nbsp;&nbsp;&nbsp; 合计 : <span style="color: #000;">￥12.00</span>
+							// 			</p>
+
+							// 		</div>
+							// 	</div>
+							// 	<div class="ywcheng_foot">
+							// 		<div class="ywcheng_foot_div">
+							// 			<a href="#" class="dingdanDfh_foot_xq">取消订单</a>
+							// 			<a href="#" class="ywcheng_foot_dd">查看订单</a>
+							// 		</div>
+
+							// 	</div>
+							// 	<div class="clear"></div>
+							// </div>
+							var order_html = order_list(order_info);
+							$('.container_Div').append(order_html);
+						}
+					}
+					else
+					{
+						$('.cuowu.iframe').show();
+						$('.cuowuTs').show();
+						$('.p2').text('获取订单信息失败');
+					}
+				},
+				error: function(error){
+					console.log(error);
+					$('.cuowu.iframe').show();
+					$('.cuowuTs').show();
+					$('.p2').text('获取订单信息失败');
+				}
+			});
+		}
+	</script>
+</html>

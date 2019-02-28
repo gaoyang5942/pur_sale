@@ -1,0 +1,38 @@
+<include file="public/header" />
+	<div class="wrap js-check-wrap">
+        <h2>用户收货地址</h2>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th width="50">ID</th>
+                    <th>省</th>
+                    <th>市</th>
+                    <th>区</th>
+                    <th>详细地址</th>
+                    <th>收件人</th>
+                    <th>手机号</th>
+                    <th>默认地址</th>
+                    <th>备注</th>   
+				</tr>
+			</thead>
+			<tbody>
+                <foreach name="list" item="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$province[$vo.pid]}</td>
+                    <td>{$city[$vo.cid]}</td>
+                    <td>{$area[$vo.did]}</td>
+                    <td>{$vo.address_detailed}</td>
+                    <td>{$vo.address_name}</td>
+                    <td>{$vo.address_tel}</td>
+                    <td><if condition="$vo['address_flag'] eq 1">是<else />否</if></td>
+                    <td>{$vo.remark}</td>
+                </tr>
+                </foreach>
+            </tbody>
+		</table>
+        <div class="pagination">{$page}</div>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
