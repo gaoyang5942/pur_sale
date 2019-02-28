@@ -56,26 +56,14 @@ $configs = [
         // 数据集返回类型
         'resultset_type'  => 'collection',
     ],
-    //微信配置
-    'APPID'            => 'wxec9bb751b2b6e61a',
-    'APPID_Z'          => 'wxc927414494bb2d19',
-    'APPSECRET'        => '0885e0b24f1e192dcb402ff3ef3f2484',
-    'AESKey'           => 'wUvmWJCa3LS0eGloeLeFfgJYS493EjmlYESSDAEuSm2',
-    'PAYINSURANCE_URL' => 'https://api.weixin.qq.com/payinsurance',//医保支付url地址
-    'YB_PAY_KEY'       => '75a455fa7edb0747579f7be0b55cb340',//商户平台设置的密钥key
-    'AGENT_APPID'      => 'wx09150f3513d6d05c',//代理公众号的appid
-    'AGENT_SECRET'     => '02de467c9e45c4010fc65145902cb9e6',//代理公众号的appsecret
-    'MCHID'            => '1371623402',//微信支付分配的商户号
-    'AGENT_SUB_MCHID'  => '1495987252',
     'ENC_KEY'          => 'ENCODE_STRING',//加密解密key
-    'WXBK_KEY'         => 'ud1892083f378kadyfd9207bu9e87t8ac',//绑卡授权key
     //分页配置
     'paginate'      => [
         'type'      => '\base\paginator\Bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
-    'baidu_map_key'     =>  'G5E4bjoHG8YgqG6352yhhyu5hUWFGFGg',
-    'qq_map_key'        =>  'SDNBZ-7FCRU-K3WVX-4SB33-PKAXV-3FB7L',
+    'baidu_map_key'     =>  '',
+    'qq_map_key'        =>  '',
 ];
 return $configs;
